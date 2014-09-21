@@ -1,0 +1,6 @@
+# temporary files
+*.swp
+
+# executables/binaries
+*.o
+*.bin
