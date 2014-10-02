@@ -1,5 +1,5 @@
 /*
-* ninux.c - Exercise 1.4 header file
+* main.c - Exercise 2.1 "Reverse"
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -22,12 +22,17 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-int show_selection_a(void);
-int show_selection_b(void);
-int show_selection_c(void);
+#include <stdio.h>
+#include <stdlib.h>
+#include <reading.h>
+#include <ninux.h>
 
-int show_options(void);
+int main(int argc, char **argv)
+{
+	char linetext[LINE_MAXIMUM];
 
-char get_input(void);
+	read_line(linetext, LINE_MAXIMUM);
+	print_reverse(linetext);
 
-int show_selection(char option);
+	return(0);
+}

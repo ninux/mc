@@ -1,5 +1,5 @@
 /*
-* ninux.c - Exercise 1.4 header file
+* ninux.c
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -22,12 +22,22 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-int show_selection_a(void);
-int show_selection_b(void);
-int show_selection_c(void);
+#include <stdio.h>
+#include <stdlib.h>
+#include <ninux.h>
 
-int show_options(void);
+int print_reverse(char input[])
+{
+	int i;
+	int length;
 
-char get_input(void);
+	length = sizeof(input) / sizeof(input[0]);
 
-int show_selection(char option);
+	for (i = length; i >= 0; i--) {
+		printf("%c", input[i]);
+	}
+
+	printf("\n");
+
+	return(0);
+}
