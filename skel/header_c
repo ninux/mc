@@ -1,5 +1,5 @@
 /*
-* main.c - Exercise 1.4 main source file
+* FILENAME.c - DESCRIPTION
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,21 +21,3 @@
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <ninux.h>
-
-int main(int argc, char **argv)
-{
-	char ch;
-
-	printf("Welcome to c coding\n");
-	printf("Please select a menu item:\n");
-
-	do {
-		show_options();
-		show_selection(ch = get_input());
-	} while(ch != 'Q');
-	return(0);
-}
