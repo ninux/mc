@@ -31,9 +31,9 @@ int main(int argc, char **argv)
 	char ch;
 
 	printf("Welcome to c coding\n");
-	printf("Please select a menu item:\n");
 
 	do {
+		printf("Please select a menu item:\n");
 		show_options();
 		show_selection(ch = get_input());
 	} while(ch != 'Q');
