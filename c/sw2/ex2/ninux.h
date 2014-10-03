@@ -22,4 +22,5 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-char *itoa(int i);
+char *itoa(int input);
+int get_decimal_size(int input);

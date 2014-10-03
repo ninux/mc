@@ -22,7 +22,25 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-char *itoa(int i)
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <ninux.h>
+
+char *itoa(int input)
 {
-	return(0);
+	char *digits;
+	int size;
+
+	size = get_decimal_size(input);
+	digits = (char*) malloc(size*sizeof(char) + '\0');
+
+
+	free(digits);
+	return ;
+}
+
+int get_decimal_size(int input)
+{
+	return (int)log10(abs(input)) + 1;
 }
