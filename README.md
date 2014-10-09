@@ -19,11 +19,11 @@ the GNU General Public License v3.0 (see [LICENSE](LICENSE))
 
 ### Third party sources
 Since this repository is coupled to an running course on an specific hardware,
-there are some 'third party sources' developed by professors at the university.
+there are some **third party sources** developed by professors at the university.
 
 The corresponding professors gave their permission to use this code freely, but
 they have not declared a specific license yet.
 
-    [...] use the code for private or business cases as you like [...]
+"[...] *use the code for private or business cases as you like* [...]"
 
-    [...] any comercial use or intended abuse is strictly forbidden [...]
+"[...] *any comercial use or intended abuse is strictly forbidden* [...]"
