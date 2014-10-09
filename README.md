@@ -26,4 +26,4 @@ they have not declared a specific license yet (state october 9th 2014).
 
 "[...] *use the code for private or business cases as you like* [...]"
 
-"[...] *any comercial use or intended abuse is strictly forbidden* [...]"
+"[...] *any commercial use or intended abuse is strictly forbidden* [...]"
