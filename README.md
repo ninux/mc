@@ -22,7 +22,7 @@ Since this repository is coupled to an running course on an specific hardware,
 there are some **third party sources** developed by professors at the university.
 
 The corresponding professors gave their permission to use this code freely, but
-they have not declared a specific license yet.
+they have not declared a specific license yet (state october 9th 2014).
 
 "[...] *use the code for private or business cases as you like* [...]"
 
