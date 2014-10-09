@@ -1,7 +1,7 @@
 # mc
 
 Personal repository for the microcontroller course at the 
-[Lucern University of Applied Sciences and Arts](http://www.hslu.ch)
+[Lucerne University of Applied Sciences and Arts](http://www.hslu.ch)
 
 ## Coding Style Guide
 The code in this repository is oriented, if applicable, on the
