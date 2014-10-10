@@ -36,7 +36,22 @@ int main(int argc, char **argv)
 		printf("DEBUG: ON\n");
 	#endif
 
-	my_number = 12345;
+	if (argc < 1) {
+		printf("no number given\n");
+		printf("exiting...\n");
+		return -1;
+	} else if (argc > 2) {
+		printf("to many arguments given\n");
+		printf("exiting...\n");
+		return -1;
+	} else {
+		my_number = atoi(argv[1]);
+	}
+
+	#ifdef DEBUG
+		printf("DEBUG: given parameter = %i", my_number);
+	#endif
+
 	tmp = itoa(my_number);
 	printf("Your number is %s\n", tmp);
 	free(tmp);
