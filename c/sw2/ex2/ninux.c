@@ -35,8 +35,8 @@ char *itoa(int input)
 
 	size = get_decimal_size(input);
 	digits = (char*) malloc(size*sizeof(char) + '\0');
-	ctr = 0;
-	while(ctr <= size) {
+	ctr = size-1;
+	while(ctr >= 0) {
 		digits[ctr] = (input % 10) + 0x30;
 		input = (input/10);
 
@@ -45,7 +45,7 @@ char *itoa(int input)
 			       digits[ctr], input);
 		#endif
 
-		ctr++;
+		ctr--;
 	}
 	digits[size] = '\0';	/* set the string terminator */
 
