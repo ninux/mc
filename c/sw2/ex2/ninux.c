@@ -29,18 +29,35 @@
 
 char *itoa(int input)
 {
-	char *digits;
-	int size;
+	char *digits;		/* for the ascii representation*/
+	int size;		/* number of digits */
+	int ctr;		/* arbitrary counter */
 
 	size = get_decimal_size(input);
 	digits = (char*) malloc(size*sizeof(char) + '\0');
+	ctr = 0;
+	while(ctr <= size) {
+		digits[ctr] = (input % 10) + 0x30;
+		input = (input/10);
 
+		#ifdef DEBUG
+			printf("DEBUG: next digit is = %c \trest = %i\n",
+			       digits[ctr], input);
+		#endif
 
-	free(digits);
-	return ;
+		ctr++;
+	}
+	digits[size] = '\0';	/* set the string terminator */
+
+	return digits;
 }
 
 int get_decimal_size(int input)
 {
-	return (int)log10(abs(input)) + 1;
+	int result;
+	result = (int)log10(abs(input)) + 1;
+	#ifdef DEBUG
+		printf("DEBUG: evaluated %i digits for %i\n", result, input);
+	#endif
+	return result;
 }

@@ -29,7 +29,17 @@
 
 int main(int argc, char **argv)
 {
-	printf("hello, world\n");
+	int my_number;
+	char *tmp;
+
+	#ifdef DEBUG
+		printf("DEBUG: ON\n");
+	#endif
+
+	my_number = 12345;
+	tmp = itoa(my_number);
+	printf("Your number is %s\n", tmp);
+	free(tmp);
 
 	return(0);
 }
