@@ -29,19 +29,10 @@ char *color_name(int i)
 	char *name;
 
 	switch (i) {
-
-	case RED:
-		name = "red";
-		break;
-	case BLUE:
-		name = "blue";
-		break;
-	case GREEN:
-		name = "green";
-		break;
-	default:
-		name = "unknown color";
-		break;
+	case RED:	name = "red"; break;
+	case BLUE:	name = "blue"; break;
+	case GREEN:	name = "green"; break;
+	default:	name = "unknown color";	break;
 	}
 
 	return name;
