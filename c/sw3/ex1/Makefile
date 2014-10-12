@@ -1,5 +1,5 @@
 CFLAGS = -pedantic-errors -Wall -I. -lm
-SOURCES = main.c
+SOURCES = main.c list.c
 
 main: $(SOURCES)
 	gcc $(CFLAGS) -o main.o $(SOURCES) -I.

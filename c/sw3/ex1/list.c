@@ -29,10 +29,19 @@
 full_name_t *create_person(char *first_name, char *last_name)
 {
 	full_name_t *person;
-
 	person = malloc(strlen(first_name) + strlen(last_name));
 	person->first = first_name;
 	person->last = last_name;
 
 	return person;
+}
+
+entry_t *add(full_name_t *person)
+{
+	entry_t *new;
+	new = malloc(sizeof *person);
+	new->name = *person;
+	new->next = NULL;
+
+	return new;
 }

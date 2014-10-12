@@ -64,6 +64,8 @@ int main(int argc, char **argv)
 	z.name = c;
 	z.next = NULL;
 
+	z.next = add(d);
+
 	ptr = &x;
 
 	while ((*ptr).next != NULL) {
