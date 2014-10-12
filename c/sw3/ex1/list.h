@@ -37,4 +37,8 @@ entry_t create_list();
 
 full_name_t *create_person(char *first_name, char *last_name);
 
-entry_t *add(full_name_t *person);
+entry_t *pack(full_name_t *person);
+
+entry_t *create_entry(char *first_name, char *last_name);
+
+entry_t *add(entry_t *root, entry_t *born);

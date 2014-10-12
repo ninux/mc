@@ -28,46 +28,18 @@
 
 int main(int argc, char **argv)
 {
+	entry_t tail;
+	entry_t head;
+
 	entry_ptr_t ptr;
 
 	full_name_t a;
-	full_name_t b;
-	full_name_t c;
-	full_name_t *d;
-
-	entry_t x;
-	entry_t y;
-	entry_t z;
 
 	#ifdef DEBUG
 		printf("DEBUG: started application\n");
 	#endif
 
-	a.first = "Nino";
-	a.last = "Ninux";
-
-	b.first = "Brian";
-	b.last = "Kerninghan";
-
-	c.first = "Dennis";
-	c.last = "Ritchie";
-
-	d = create_person("Someone", "Else");
-	printf("Name: %s %s\n", d->first, d->last);
-
-	x.name = a;
-	x.next = &y;
-
-	y.name = b;
-	y.next = &z;
-
-	z.name = c;
-	z.next = NULL;
-
-	z.next = add(d);
-
-	ptr = &x;
-
+	/*
 	while ((*ptr).next != NULL) {
 		printf("%s %s is linked to %s %s\n",
 		       (*ptr).name.first,
@@ -77,6 +49,7 @@ int main(int argc, char **argv)
 		);
 		ptr = ((*ptr).next);
 	}
+	*/
 
 	#ifdef DEBUG
 		printf("DEBUG: exiting application\n");

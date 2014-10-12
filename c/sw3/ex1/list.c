@@ -36,7 +36,7 @@ full_name_t *create_person(char *first_name, char *last_name)
 	return person;
 }
 
-entry_t *add(full_name_t *person)
+entry_t *pack(full_name_t *person)
 {
 	entry_t *new;
 	new = malloc(sizeof *person);
@@ -44,4 +44,30 @@ entry_t *add(full_name_t *person)
 	new->next = NULL;
 
 	return new;
+}
+
+entry_t *create_entry(char *first_name, char *last_name)
+{
+	entry_t *element;
+	full_name_t *person;
+	person = malloc(strlen(first_name) + strlen(last_name));
+	person->first = first_name;
+	person->last = last_name;
+	element = pack(person);
+
+	return element;
+}
+
+entry_t *add(entry_t *root, entry_t *born)
+{
+	entry_ptr_t ptr;
+	ptr = root;
+
+	while ((*ptr).next != NULL) {
+		ptr = ((*ptr).next);
+	}
+
+	(*ptr).next = born;
+
+	return born;
 }
