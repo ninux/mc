@@ -54,8 +54,8 @@ Address | Mnemonic | OpCode | Operand 1 | Operand 2 | Comment
 0x097A  | LSLA     |        |           |           | Shift accumulator bitwise left
 0x097B  | STA      | 0xB7   |           |           | Store accumulator to memory address
 0x097C  |          |        | 0x08      |           | ... address = 0x08
-0x097D  | LDX      | 0xAE   |           |           | Load index register X from memory address
-0x097E  |          |        | 0xFF      |           | ... address = 0xFF
+0x097D  | LDX      | 0xAE   |           |           | Load value to index register X 
+0x097E  |          |        | 0xFF      |           | ... value = 0xFF
 0x097F  | LDA      | 0xA6   |           |           | Load value to accumulator
 0x0980  |          |        | 0xFF      |           | ... value = 0xFF
 0x0981  | MOV      | 0x4E   |           |           | Move value from address 1 to address 2
@@ -71,27 +71,27 @@ Address | Mnemonic | OpCode | Operand 1 | Operand 2 | Comment
 0x098B  |          |        | 0x06      |           | ... address 1 = 0x06
 0x098C  |          |        | 0x02      |           | ... address 2 = 0x02
 0x098D  | DECX     | 0x5A   |           |           | Decrement index register X by 1
-0x098E  | BNE      | 0x26   |           |           | Branch if not equal [which two things are compared?]
-0x098F  |          |        | 0xF1      |           | 
-0x0990  | LDX      | 0xAE   |           |           |
-0x0991  | STX      | 0xFF   |           |           |
-0x0992  | DBNZA    | 0x4B   |           |           |
-0x0993  |          |        | 0xED      |           |
-0x0994  | LDA      | 0xB6   |           |           |
-0x0995  |          |        | 0xC1      |           |
-0x0996  | ROLA     | 0x49   |           |           |
-0x0997  | STA      | 0xB7   |           |           |
-0x0998  |          |        | 0xC1      |           |
-0x0999  | STA      | 0xB7   |           |           |
-0x099A  |          |        | 0x0A      |           |
-0x099B  | LSLA     | 0x48   |           |           |
-0x099C  | LSLA     | 0x48   |           |           |
-0x099D  | LSLA     | 0x48   |           |           |
-0x099E  | LSLA     | 0x48   |           |           |
-0x099F  | STA      | 0xB7   |           |           |
-0x09A0  |          |        | 0x08      |           |
-0x09A1  | BRA      | 0x20   |           |           |
-0x09A2  |          |        | 0xDA      |           |
+0x098E  | BNE      | 0x26   |           |           | Branch if not equal **which two things are compared?**
+0x098F  |          |        | 0xF1      |           | **offset or address?**
+0x0990  | LDX      | 0xAE   |           |           | Load value to index register X 
+0x0991  |          |        | 0xFF      |           | ... value = 0xFF
+0x0992  | DBNZA    | 0x4B   |           |           | Decrement accumulator by 1 and branch if not zero 
+0x0993  |          |        | 0xED      |           | ... **address or offset?**
+0x0994  | LDA      | 0xB6   |           |           | Load accumulator from memory address
+0x0995  |          |        | 0xC1      |           | ... address = 0xC1
+0x0996  | ROLA     | 0x49   |           |           | Rotate accumulator left through carry
+0x0997  | STA      | 0xB7   |           |           | Store accumulator to address
+0x0998  |          |        | 0xC1      |           | ... address = 0xC1
+0x0999  | STA      | 0xB7   |           |           | Store accumulator to address
+0x099A  |          |        | 0x0A      |           | ... address = 0x0A
+0x099B  | LSLA     | 0x48   |           |           | Logical shift left of accumulator
+0x099C  | LSLA     | 0x48   |           |           | Logical shift left of accumulator
+0x099D  | LSLA     | 0x48   |           |           | Logical shift left of accumulator
+0x099E  | LSLA     | 0x48   |           |           | Logical shift left of accumulator
+0x099F  | STA      | 0xB7   |           |           | Store accumulator to address
+0x09A0  |          |        | 0x08      |           | ... address = 0x08
+0x09A1  | BRA      | 0x20   |           |           | Branch to **address or offset?**
+0x09A2  |          |        | 0xDA      |           | ... **address or offset?** = 
 0x09A3  |          |        |           |           |
 0x09A4  |          |        |           |           |
 0x09A5  |          |        |           |           |
