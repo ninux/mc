@@ -65,14 +65,14 @@ int main(int argc, char **argv)
 	printf("first element: %s\n", (*ptr).name.last);
 	printf("next is: %s\n", (*(*ptr).next).name.last);
 
-	while (ptr != NULL) {
-		printf("%s %s is linked to %s %s",
+	while ((*ptr).next != NULL) {
+		printf("%s %s is linked to %s %s\n",
 		       (*ptr).name.first,
 		       (*ptr).name.last,
 		       (*(*ptr).next).name.first,
 		       (*(*ptr).next).name.last
 		);
-		ptr = (*(*ptr).next);
+		ptr = ((*ptr).next);
 	}
 
 	#ifdef DEBUG
