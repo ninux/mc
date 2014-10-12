@@ -35,7 +35,7 @@ Address | Mnemonic | OpCode | Operand 1 | Operand 2 | Comment
 0x0967  |          |        |           |           |
 0x0968  |          |        |           |           |
 0x0969  | LDA      | 0xA6   |           |           | Load value to accumulator 
-0x096A  |          |        | 0x0F      |           |     value = 0x0F (15d)
+0x096A  |          |        | 0x0F      |           | ... value = 0x0F (15d)
 0x096B  | STA      | 0xB7   |           |           | Store accumulator to memory address
 0x096C  |          |        | 0x0B      |           | ... address = 0x0B
 0x096D  | LDA      | 0xA6   |           |           | Load value to accumulator
@@ -70,9 +70,9 @@ Address | Mnemonic | OpCode | Operand 1 | Operand 2 | Comment
 0x098A  | MOV      | 0x4E   |           |           | Move value from address 1 to address 2
 0x098B  |          |        | 0x06      |           | ... address 1 = 0x06
 0x098C  |          |        | 0x02      |           | ... address 2 = 0x02
-0x098D  | DECX     | 0x5A   |           |           |
-0x098E  | BNE      | 0x26   |           |           |
-0x098F  |          |        | 0xF1      |           |
+0x098D  | DECX     | 0x5A   |           |           | Decrement index register X by 1
+0x098E  | BNE      | 0x26   |           |           | Branch if not equal [which two things are compared?]
+0x098F  |          |        | 0xF1      |           | 
 0x0990  | LDX      | 0xAE   |           |           |
 0x0991  | STX      | 0xFF   |           |           |
 0x0992  | DBNZA    | 0x4B   |           |           |
