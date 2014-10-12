@@ -1,5 +1,5 @@
 /*
-* FILENAME.c - Exercise 4, SW2
+* ninux.h - Exercise 4, SW2
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *

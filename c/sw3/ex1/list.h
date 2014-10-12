@@ -1,5 +1,5 @@
 /*
-* main.c - Exercise 4, SW2
+* list.c - Exercise 1, SW2
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,36 +21,16 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ninux.h>
+typedef struct entry *entry_ptr_t;
 
-int main(int argc, char **argv)
-{
-	int input;
-	char *name;
+typedef struct full_name {
+	char *first;
+	char* last;
+} full_name_t;
 
-	#ifdef DEBUG
-		printf("DEBUG: %i arguments given\n", argc);
-	#endif
+typedef struct entry {
+	full_name_t name;
+	entry_ptr_t *next;
+} entry_t;
 
-	if (argc < 2) {
-		printf("no value given\n");
-		printf("exiting...\n");
-		return -1;
-	} else if (argc > 2) {
-		printf("to many arguments\n");
-		printf("exiting...\n");
-		return -1;
-	} else {
-		input = atoi(argv[1]);
-		#ifdef DEBUG
-			printf("DEBUG: input value = %i\n", input);
-		#endif
-	}
-
-	name = color_name(input);
-	printf("The vale \"%i\" is associated with \"%s\"\n", input, name);
-
-	return 0;
-}
+entry_t create_list();

@@ -1,5 +1,5 @@
 /*
-* main.c - Exercise 4, SW2
+* list.c - Exercise 1, SW2
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -23,34 +23,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ninux.h>
+#include "list.h"
 
-int main(int argc, char **argv)
+entry_t create list()
 {
-	int input;
-	char *name;
+	entry_t *root;
+	root = (entry_t)malloc(sizeof(entry_t));
 
-	#ifdef DEBUG
-		printf("DEBUG: %i arguments given\n", argc);
-	#endif
-
-	if (argc < 2) {
-		printf("no value given\n");
-		printf("exiting...\n");
-		return -1;
-	} else if (argc > 2) {
-		printf("to many arguments\n");
-		printf("exiting...\n");
-		return -1;
-	} else {
-		input = atoi(argv[1]);
-		#ifdef DEBUG
-			printf("DEBUG: input value = %i\n", input);
-		#endif
-	}
-
-	name = color_name(input);
-	printf("The vale \"%i\" is associated with \"%s\"\n", input, name);
-
-	return 0;
+	return root;
 }

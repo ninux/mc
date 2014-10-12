@@ -1,5 +1,5 @@
 /*
-* main.c - Exercise 4, SW2
+* FILENAME.c - DESCRIPTION
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -23,34 +23,31 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ninux.h>
+#include <string.h>
+#include "list.h"
 
 int main(int argc, char **argv)
 {
-	int input;
-	char *name;
+	full_name_t a;
+	entry_t b;
 
 	#ifdef DEBUG
-		printf("DEBUG: %i arguments given\n", argc);
+		printf("DEBUG: started application\n");
 	#endif
 
-	if (argc < 2) {
-		printf("no value given\n");
-		printf("exiting...\n");
-		return -1;
-	} else if (argc > 2) {
-		printf("to many arguments\n");
-		printf("exiting...\n");
-		return -1;
-	} else {
-		input = atoi(argv[1]);
-		#ifdef DEBUG
-			printf("DEBUG: input value = %i\n", input);
-		#endif
-	}
+	a.first = "Nino";
+	a.last = "Ninux";
 
-	name = color_name(input);
-	printf("The vale \"%i\" is associated with \"%s\"\n", input, name);
+	printf("Your name is: %s %s\n", a.first, a.last);
+
+	b.name = a;
+	b.next = NULL;
+
+	printf("Your name is: %s %s\n", b.name.first, b.name.last);
+
+	#ifdef DEBUG
+		printf("DEBUG: exiting application\n");
+	#endif
 
 	return 0;
 }
