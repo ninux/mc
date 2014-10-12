@@ -62,7 +62,18 @@ int main(int argc, char **argv)
 
 	ptr = &x;
 
-	printf("first element: %s", *ptr.name.first);
+	printf("first element: %s\n", (*ptr).name.last);
+	printf("next is: %s\n", (*(*ptr).next).name.last);
+
+	while (ptr != NULL) {
+		printf("%s %s is linked to %s %s",
+		       (*ptr).name.first,
+		       (*ptr).name.last,
+		       (*(*ptr).next).name.first,
+		       (*(*ptr).next).name.last
+		);
+		ptr = (*(*ptr).next);
+	}
 
 	#ifdef DEBUG
 		printf("DEBUG: exiting application\n");
