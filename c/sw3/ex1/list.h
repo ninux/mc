@@ -34,3 +34,5 @@ typedef struct entry {
 } entry_t;
 
 entry_t create_list();
+
+full_name_t *create_person(char *first_name, char *last_name);

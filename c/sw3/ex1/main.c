@@ -33,6 +33,7 @@ int main(int argc, char **argv)
 	full_name_t a;
 	full_name_t b;
 	full_name_t c;
+	full_name_t *d;
 
 	entry_t x;
 	entry_t y;
@@ -51,6 +52,9 @@ int main(int argc, char **argv)
 	c.first = "Dennis";
 	c.last = "Ritchie";
 
+	d = create_person("Someone", "Else");
+	printf("Name: %s %s\n", d->first, d->last);
+
 	x.name = a;
 	x.next = &y;
 
@@ -61,9 +65,6 @@ int main(int argc, char **argv)
 	z.next = NULL;
 
 	ptr = &x;
-
-	printf("first element: %s\n", (*ptr).name.last);
-	printf("next is: %s\n", (*(*ptr).next).name.last);
 
 	while ((*ptr).next != NULL) {
 		printf("%s %s is linked to %s %s\n",

@@ -23,12 +23,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
-entry_t create list()
+full_name_t *create_person(char *first_name, char *last_name)
 {
-	entry_t *root;
-	root = (entry_t)malloc(sizeof(entry_t));
+	full_name_t *person;
 
-	return root;
+	person = malloc(strlen(first_name) + strlen(last_name));
+	person->first = first_name;
+	person->last = last_name;
+
+	return person;
 }
