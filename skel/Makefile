@@ -1,14 +1,15 @@
-CFLAGS= -pedantic-errors -Wall -I. -lm
+CFLAGS = -pedantic-errors -Wall -I. -lm
+SOURCES = main.c 
 
-main: main.c ninux.c
-	gcc $(CFLAGS) -o main.o main.c ninux.c -I.
+main:
+	gcc $(CFLAGS) -o main.o $(SOURCES)
 
-debug: main.c ninux.c
-	gcc $(CFLAGS) -o debug.o main.c ninux.c -I. -DDEBUG
+debug:
+	gcc $(CFLAGS) -o debug.o $(SOURCES) -DDEBUG
 
-all: main.c ninux.h
-	gcc $(CFLAGS) -o main.o main.c ninux.c -I.
-	gcc $(CFLAGS) -o debug.o main.c ninux.c -I. -DDEBUG
+all:
+	gcc $(CFLAGS) -o main.o $(SOURCES)
+	gcc $(CFLAGS) -o debug.o $(SOURCES) -DDEBUG
 
 .PHONY: clean
 
