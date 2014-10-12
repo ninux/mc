@@ -35,7 +35,7 @@ Address | Mnemonic | OpCode | Operand 1 | Operand 2 | Comment
 0x0967  |          |        |           |           |
 0x0968  |          |        |           |           |
 0x0969  | LDA      | 0xA6   |           |           | Load value to accumulator 
-0x096A  |          |        | 0x0F      |           | ... value = 0x0F (15d)
+0x096A  |          |        | 0x0F      |           |     value = 0x0F (15d)
 0x096B  | STA      | 0xB7   |           |           | Store accumulator to memory address
 0x096C  |          |        | 0x0B      |           | ... address = 0x0B
 0x096D  | LDA      | 0xA6   |           |           | Load value to accumulator
