@@ -71,3 +71,28 @@ entry_t *add(entry_t *root, entry_t *born)
 
 	return born;
 }
+
+entry_t *cadd(entry_t *root, char *first_name, char *last_name)
+{
+	entry_t *element;
+	full_name_t *person;
+	entry_ptr_t ptr;
+
+	ptr = root;
+
+	person = malloc(strlen(first_name) + strlen(last_name));
+	person->first = first_name;
+	person->last = last_name;
+
+	element = malloc(sizeof *person);
+	element->name = *person;
+	element->next = NULL;
+
+	while ((ptr->next) != NULL) {
+		ptr = (ptr->next);
+	}
+
+	ptr->next = element;
+
+	return element;
+}

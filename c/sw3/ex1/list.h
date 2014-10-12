@@ -42,3 +42,5 @@ entry_t *pack(full_name_t *person);
 entry_t *create_entry(char *first_name, char *last_name);
 
 entry_t *add(entry_t *root, entry_t *born);
+
+entry_t *cadd(entry_t *root, char *first_name, char *last_name);
