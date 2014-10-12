@@ -1,5 +1,5 @@
 /*
-* FILENAME.c - DESCRIPTION
+* main.c - Exercise 1, SW3
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -28,8 +28,15 @@
 
 int main(int argc, char **argv)
 {
+	entry_ptr_t ptr;
+
 	full_name_t a;
-	entry_t b;
+	full_name_t b;
+	full_name_t c;
+
+	entry_t x;
+	entry_t y;
+	entry_t z;
 
 	#ifdef DEBUG
 		printf("DEBUG: started application\n");
@@ -38,12 +45,24 @@ int main(int argc, char **argv)
 	a.first = "Nino";
 	a.last = "Ninux";
 
-	printf("Your name is: %s %s\n", a.first, a.last);
+	b.first = "Brian";
+	b.last = "Kerninghan";
 
-	b.name = a;
-	b.next = NULL;
+	c.first = "Dennis";
+	c.last = "Ritchie";
 
-	printf("Your name is: %s %s\n", b.name.first, b.name.last);
+	x.name = a;
+	x.next = &y;
+
+	y.name = b;
+	y.next = &z;
+
+	z.name = c;
+	z.next = NULL;
+
+	ptr = &x;
+
+	printf("first element: %s", *ptr.name.first);
 
 	#ifdef DEBUG
 		printf("DEBUG: exiting application\n");

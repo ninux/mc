@@ -30,7 +30,7 @@ typedef struct full_name {
 
 typedef struct entry {
 	full_name_t name;
-	entry_ptr_t *next;
+	entry_ptr_t next;
 } entry_t;
 
 entry_t create_list();

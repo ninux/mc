@@ -14,5 +14,4 @@ all: $(SOURCES)
 .PHONY: clean
 
 clean:
-	rm main.o
-	rm debug.o
+	rm *.o
