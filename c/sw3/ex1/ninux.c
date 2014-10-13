@@ -1,5 +1,5 @@
 /*
-* main.c - Exercise 1, SW3
+* list.c - Exercise 1, SW2
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -22,28 +22,58 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include <ctype.h>
 #include "list.h"
 #include "ninux.h"
 
-int main(int argc, char **argv)
+#define LIST 'L'
+#define NEW  'N'
+#define QUIT 'Q'
+
+char get_input()
 {
-	char cmd;
+	char input;
+	while(!isalpha (input = getchar())){
+		/* NO-OP */
+	}
+	input = toupper(input);
+	return(input);
+}
 
+int check_command(char cmd)
+{
+	switch (cmd) {
+	case LIST:
+		plist();
+		break;
+	case NEW:
+		add();
+		break;
+	case QUIT:
+		quit();
+		break;
+	default:
+		help(cmd);
+		break;
+	}
+	return 0;
+}
+
+int help(char cmd)
+{
 	#ifdef DEBUG
-		printf("DEBUG: started application\n");
+		printf("invalid option \"%c\"\n", cmd);
+		printf(" usage:");
+		printf("\t%c\tprint list\n",LIST);
+		printf("\t%c\tnew entry\n", NEW);
+		printf("\t%c\tquit\n", QUIT);
 	#endif
+	return 0;
+}
 
-	do {
-		printf("> ");
-		cmd = get_input();
-		check_command(cmd);
-	} while (cmd != 'Q');
-
-	#ifdef DEBUG
-		printf("DEBUG: exiting application\n");
-	#endif
-
+int quit(void)
+{
+	printf("exiting...\n");
 	return 0;
 }

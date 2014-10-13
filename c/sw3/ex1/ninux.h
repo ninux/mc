@@ -1,5 +1,5 @@
 /*
-* main.c - Exercise 1, SW3
+* list.c - Exercise 1, SW2
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,29 +21,10 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "list.h"
-#include "ninux.h"
+char get_input();
 
-int main(int argc, char **argv)
-{
-	char cmd;
+int help(char cmd);
 
-	#ifdef DEBUG
-		printf("DEBUG: started application\n");
-	#endif
+int quit();
 
-	do {
-		printf("> ");
-		cmd = get_input();
-		check_command(cmd);
-	} while (cmd != 'Q');
-
-	#ifdef DEBUG
-		printf("DEBUG: exiting application\n");
-	#endif
-
-	return 0;
-}
+int check_command(char cmd);

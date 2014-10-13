@@ -23,6 +23,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "list.h"
 
+int plist(void)
+{
+	#ifdef DEBUG
+		printf("DEBUG: printing the list\n");
+	#endif
+	return 0;
+}
+
+int add(void)
+{
+	#ifdef DEBUG
+		printf("DEBUG: adding an entry to the list\n");
+	#endif
+	return 0;
+}
