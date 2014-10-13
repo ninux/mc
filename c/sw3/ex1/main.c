@@ -28,39 +28,10 @@
 
 int main(int argc, char **argv)
 {
-	entry_t *root;
-	entry_ptr_t ptr;
-
-	full_name_t *a;
-
 	#ifdef DEBUG
 		printf("DEBUG: started application\n");
 	#endif
 
-	a = create_person("Nino", "Ninux");
-	root = add(root, pack(a));
-
-	printf("root: %s\n", root->name.first);
-	cadd(root, "Dennis", "Ritchie");
-	cadd(root, "Biean", "Kerninghan");
-
-	printf("%s is linked to %s",
-	       ptr->name.first,
-	       ptr->next->name.first);
-
-
-	/*
-	ptr = root;
-	while ((*ptr).next != NULL) {
-		printf("%s %s is linked to %s %s\n",
-		       (*ptr).name.first,
-		       (*ptr).name.last,
-		       (*(*ptr).next).name.first,
-		       (*(*ptr).next).name.last
-		);
-		ptr = ((*ptr).next);
-	}
-	*/
 
 	#ifdef DEBUG
 		printf("DEBUG: exiting application\n");
