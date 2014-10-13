@@ -27,9 +27,33 @@
 #include "list.h"
 #include "ninux.h"
 
+entry_ptr_t head;
+
 int main(int argc, char **argv)
 {
 	char cmd;
+
+	name_t *a;
+	name_t *b;
+	name_t *c;
+
+	entry_t *z;
+	entry_t *y;
+	entry_t *x;
+
+	a = create_name("Nino", "Ninux");
+	b = create_name("Dennis", "Ritchie");
+	c = create_name("Brian", "Kerninghan");
+
+	x = create_entry(*a, NULL);
+	y = create_entry(*b, NULL);
+	z = create_entry(*c, NULL);
+
+	head = z;
+
+	/*
+	plist(head);
+	*/
 
 	#ifdef DEBUG
 		printf("DEBUG: started application\n");

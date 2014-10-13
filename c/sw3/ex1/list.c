@@ -23,9 +23,31 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "list.h"
 
-int plist(void)
+#define MAX_NAMESIZE 20
+
+extern entry_ptr_t head;
+
+
+int plist(entry_ptr_t origin)
 {
+	entry_ptr_t ptr;
+
+	if (origin == NULL) {
+		printf("list is empty\n");
+		return -1;
+	} else {
+		ptr = origin;
+	}
+
+	printf("list\n");
+	do {
+		printf("\t%s %s\n", ptr->name.first, ptr->name.last);
+		ptr = *(ptr->next);
+	} while ((ptr->next) != NULL);
+
 	#ifdef DEBUG
 		printf("DEBUG: printing the list\n");
 	#endif
@@ -34,8 +56,46 @@ int plist(void)
 
 int add(void)
 {
+	/*
+	name_t *name;
+	char first_name[20];
+	char last_name[20];
+	int limit;
+
+	limit = 20;
+
+	printf("first name: ");
+	fgets(first_name, limit, stdin);
+	fflush();
+	printf("last name: ");
+	fgets(last_name, limit, stdin);
+	fflush();
+
+	name->first = first_name;
+	name->last = last_name;
+	*/
+
 	#ifdef DEBUG
-		printf("DEBUG: adding an entry to the list\n");
+		printf("DEBUG: adding entry to list\n");
 	#endif
+
 	return 0;
+}
+
+name_t *create_name(char *first_name, char *last_name)
+{
+	name_t *name;
+	name = (name_t*)malloc(strlen(first_name) + strlen(last_name));
+	name->first = first_name;
+	name->last = last_name;
+	return name;
+}
+
+entry_t *create_entry(name_t name, entry_ptr_t *next)
+{
+	entry_t *entry;
+	entry = malloc(sizeof(name) + sizeof(entry_t));
+	entry->name = name;
+	entry->next = next;
+	return entry;
 }

@@ -27,9 +27,12 @@
 #include "list.h"
 #include "ninux.h"
 
+#define HELP 'H'
 #define LIST 'L'
 #define NEW  'N'
 #define QUIT 'Q'
+
+extern entry_ptr_t head;
 
 char get_input()
 {
@@ -45,13 +48,16 @@ int check_command(char cmd)
 {
 	switch (cmd) {
 	case LIST:
-		plist();
+		plist(head);
 		break;
 	case NEW:
 		add();
 		break;
 	case QUIT:
 		quit();
+		break;
+	case HELP:
+		help(cmd);
 		break;
 	default:
 		help(cmd);
@@ -63,12 +69,17 @@ int check_command(char cmd)
 int help(char cmd)
 {
 	#ifdef DEBUG
-		printf("invalid option \"%c\"\n", cmd);
-		printf(" usage:");
-		printf("\t%c\tprint list\n",LIST);
-		printf("\t%c\tnew entry\n", NEW);
-		printf("\t%c\tquit\n", QUIT);
 	#endif
+	if (cmd != HELP) {
+		printf("invalid option \"%c\"\n", cmd);
+		printf("\nusage:");
+	} else {
+		printf("help\n\nusage:");
+	}
+	printf("\t%c\tprint list\n",LIST);
+	printf("\t%c\tnew entry\n", NEW);
+	printf("\t%c\tquit\n", QUIT);
+
 	return 0;
 }
 
