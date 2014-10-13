@@ -33,21 +33,22 @@ int main(int argc, char **argv)
 {
 	char cmd;
 
-	name_t *a;
-	name_t *b;
-	name_t *c;
-
-	entry_t *z;
-	entry_t *y;
-	entry_t *x;
+	name_t  *a, *b, *c, *d, *e, *f;
+	entry_t *z, *y, *x, *w, *v, *u;
 
 	a = create_name("Nino", "Ninux");
 	b = create_name("Dennis", "Ritchie");
 	c = create_name("Brian", "Kerninghan");
+	d = create_name("Linus", "Torvalds");
+	e = create_name("Richard", "Stallman");
+	f = create_name("Konrad", "Zuse");
 
-	x = create_entry(*a, NULL);
-	y = create_entry(*b, NULL);
-	z = create_entry(*c, NULL);
+	u = create_entry(*a, NULL);
+	v = create_entry(*b, &u);
+	w = create_entry(*c, &v);
+	x = create_entry(*d, &w);
+	y = create_entry(*e, &x);
+	z = create_entry(*f, &y);
 
 	head = z;
 

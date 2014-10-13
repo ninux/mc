@@ -43,10 +43,19 @@ int plist(entry_ptr_t origin)
 	}
 
 	printf("list\n");
+	printf("\thead:\t[ %s %s\n",
+	       ptr->name.first,
+	       ptr->name.last);
+	ptr = *(ptr->next);
 	do {
-		printf("\t%s %s\n", ptr->name.first, ptr->name.last);
+		printf("\t\t-> %s %s\n",
+		       ptr->name.first,
+		       ptr->name.last);
 		ptr = *(ptr->next);
 	} while ((ptr->next) != NULL);
+	printf("\ttail:\t-> %s %s ]\n",
+	       ptr->name.first,
+	       ptr->name.last);
 
 	#ifdef DEBUG
 		printf("DEBUG: printing the list\n");
