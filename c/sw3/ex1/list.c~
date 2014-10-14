@@ -107,7 +107,6 @@ name_t *create_name(char *first_name, char *last_name)
 	strcpy(pName + strlen(first_name), lastName);
 	name->first = pName;
 	name->last = pName + strlen(first_name);
-	name->next = NULL;
 	return name;
 }
 
