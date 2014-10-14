@@ -44,12 +44,12 @@ int main(int argc, char **argv)
 	e = create_name("Richard", "Stallman");
 	f = create_name("Konrad", "Zuse");
 
-	u = create_entry(*a, NULL);
-	v = create_entry(*b, &u);
-	w = create_entry(*c, &v);
-	x = create_entry(*d, &w);
-	y = create_entry(*e, &x);
-	z = create_entry(*f, &y);
+	u = create_entry(a, NULL);
+	v = create_entry(b, &u);
+	w = create_entry(c, &v);
+	x = create_entry(d, &w);
+	y = create_entry(e, &x);
+	z = create_entry(f, &y);
 
 	head = z;
 

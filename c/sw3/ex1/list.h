@@ -29,12 +29,12 @@ typedef struct name {
 } name_t;
 
 typedef struct entry {
-	name_t name;
+	name_t *name;
 	entry_ptr_t *next;
 } entry_t;
 
 name_t *create_name(char *first_name, char *last_name);
-entry_t *create_entry(name_t name, entry_ptr_t *next);
+entry_t *create_entry(name_t *name, entry_ptr_t *next);
 
 int plist(entry_ptr_t origin);
 

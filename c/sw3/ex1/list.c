@@ -46,18 +46,18 @@ int plist(entry_ptr_t origin)
 
 	printf("list\n");
 	printf("\thead:\t[ %s %s\n",
-	       ptr->name.first,
-	       ptr->name.last);
+	       (ptr->name)->first,
+	       (ptr->name)->last);
 	ptr = *(ptr->next);
 	do {
 		printf("\t\t-> %s %s\n",
-		       ptr->name.first,
-		       ptr->name.last);
+		       (ptr->name)->first,
+		       (ptr->name)->last);
 		ptr = *(ptr->next);
 	} while ((ptr->next) != NULL);
 	printf("\ttail:\t-> %s %s ]\n",
-	       ptr->name.first,
-	       ptr->name.last);
+		(ptr->name)->first,
+		(ptr->name)->last);
 
 	#ifdef DEBUG
 		printf("DEBUG: printing the list\n");
@@ -67,6 +67,7 @@ int plist(entry_ptr_t origin)
 
 int add(void)
 {
+
 	#ifdef DEBUG
 		printf("DEBUG: adding entry to list\n");
 	#endif
@@ -90,11 +91,11 @@ name_t *create_name(char *first_name, char *last_name)
 }
 
 
-entry_t *create_entry(name_t name, entry_ptr_t *next)
+entry_t *create_entry(name_t *name, entry_ptr_t *next)
 {
 	entry_t *entry;
 
-	entry = malloc(sizeof(name) + sizeof(entry_t));
+	entry = malloc(sizeof(name) + sizeof(entry_ptr_t));
 
 	entry->name = name;
 	entry->next = next;
