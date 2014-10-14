@@ -3,6 +3,9 @@
 Personal repository for the microcontroller course at the 
 [Lucerne University of Applied Sciences and Arts](http://www.hslu.ch)
 
+## Quicklinks
+[dynamic list](c/sw3/ex1)
+
 ## Coding Style Guide
 The code in this repository is oriented, if applicable, on the
 [Linux kernel coding style](https://www.kernel.org/doc/Documentation/CodingStyle).
