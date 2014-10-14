@@ -77,14 +77,15 @@ int add(void)
 	a_entry = malloc(sizeof(entry_t));
 
 	a_name = ask_name();
-	a_entry->name = a_name;
-
-	a_entry->next = head->next;
+	a_entry = create_entry(a_name, head->next);
 
 	head = a_entry;
 
 	#ifdef DEBUG
 		printf("DEBUG: adding entry to list\n");
+		printf("DEBUG: new head at \"%s\" \"%s\"\n",
+		       (head->name)->first,
+		       (head->name)->last);
 	#endif
 
 	return 0;

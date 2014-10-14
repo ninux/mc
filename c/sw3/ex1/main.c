@@ -29,7 +29,6 @@
 
 entry_ptr_t head;
 
-
 int main(int argc, char **argv)
 {
 	char cmd;
