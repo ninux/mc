@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 	name_t  *a, *b, *c, *d, *e, *f;
 	entry_t *z, *y, *x, *w, *v, *u;
 
-	a = create_name("x", "z");
+	a = create_name("Nino", "Ninux");
 	b = create_name("Dennis", "Ritchie");
 	c = create_name("Brian", "Kerninghan");
 	d = create_name("Linus", "Torvalds");

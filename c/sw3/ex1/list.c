@@ -70,7 +70,19 @@ int plist(entry_ptr_t origin)
 
 int add(void)
 {
-	ask_name();
+	name_t *a_name;
+	entry_t *a_entry;
+
+	a_name = malloc(sizeof(name_t));
+	a_entry = malloc(sizeof(entry_t));
+
+	a_name = ask_name();
+	a_entry->name = a_name;
+
+	a_entry->next = head->next;
+
+	head = a_entry;
+
 	#ifdef DEBUG
 		printf("DEBUG: adding entry to list\n");
 	#endif
@@ -122,7 +134,7 @@ name_t *ask_name(void)
 	strtok(last_name, "\n");
 
 	#ifdef DEBUG
-		printf("DEBUG: given name is \"%s\" \"%s\"",
+		printf("DEBUG: given name is \"%s\" \"%s\"\n",
 		       first_name, last_name);
 	#endif
 
