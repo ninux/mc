@@ -24,9 +24,7 @@ published by
 */
 
 #include <stdio.h>
-#include <stdlib.h>ndet [-Wuninitialized]
-[ninux@t430 ex1]$ make clean all
-
+#include <stdlib.h>
 #include <string.h>
 #include "list.h"
 
@@ -69,25 +67,6 @@ int plist(entry_ptr_t origin)
 
 int add(void)
 {
-	/*
-	name_t *name;
-	char first_name[20];
-	char last_name[20];
-	int limit;
-
-	limit = 20;
-
-	printf("first name: ");
-	fgets(first_name, limit, stdin);
-	fflush();
-	printf("last name: ");
-	fgets(last_name, limit, stdin);
-	fflush();
-
-	name->first = first_name;
-	name->last = last_name;
-	*/
-
 	#ifdef DEBUG
 		printf("DEBUG: adding entry to list\n");
 	#endif
@@ -97,25 +76,28 @@ int add(void)
 
 name_t *create_name(char *first_name, char *last_name)
 {
-	char* pName;
-	name_t* pEle;
+	name_t* p_name;
 
-	pName = malloc(strlen(first_name) + strlen(last_name));
-	pEle = (name_t*)malloc(sizeof(name_t));
+	p_name = (name_t*)malloc(sizeof(name_t));
 
-	strcpy(pName, first_name);
-	strcpy(pName + strlen(first_name), lastName);
-	name->first = pName;
-	name->last = pName + strlen(first_name);
-	name->next = NULL;
-	return name;
+	p_name->first = malloc(strlen(first_name));
+	p_name->last = malloc(strlen(last_name));
+
+	strcpy(p_name->first, first_name);
+	strcpy(p_name->last, last_name);
+
+	return p_name;
 }
+
 
 entry_t *create_entry(name_t name, entry_ptr_t *next)
 {
 	entry_t *entry;
+
 	entry = malloc(sizeof(name) + sizeof(entry_t));
+
 	entry->name = name;
 	entry->next = next;
+
 	return entry;
 }
