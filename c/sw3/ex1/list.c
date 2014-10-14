@@ -32,10 +32,13 @@ published by
 
 extern entry_ptr_t head;
 
-
 int plist(entry_ptr_t origin)
 {
 	entry_ptr_t ptr;
+
+	#ifdef DEBUG
+		printf("DEBUG: printing the list\n");
+	#endif
 
 	if (origin == NULL) {
 		printf("list is empty\n");
@@ -60,14 +63,14 @@ int plist(entry_ptr_t origin)
 		(ptr->name)->last);
 
 	#ifdef DEBUG
-		printf("DEBUG: printing the list\n");
+		printf("DEBUG: end of list\n");
 	#endif
 	return 0;
 }
 
 int add(void)
 {
-
+	ask_name();
 	#ifdef DEBUG
 		printf("DEBUG: adding entry to list\n");
 	#endif
@@ -101,4 +104,28 @@ entry_t *create_entry(name_t *name, entry_ptr_t *next)
 	entry->next = next;
 
 	return entry;
+}
+
+name_t *ask_name(void)
+{
+	name_t *name;
+	char first_name[MAX_NAMESIZE];
+	char last_name[MAX_NAMESIZE];
+
+	scanf("%*[^\n]"); (void) getchar ();
+	printf("\tfirst name: ");
+	fgets(first_name, MAX_NAMESIZE, stdin);
+	strtok(first_name, "\n");
+
+	printf("\tlast name: ");
+	fgets(last_name, MAX_NAMESIZE, stdin);
+	strtok(last_name, "\n");
+
+	#ifdef DEBUG
+		printf("DEBUG: given name is \"%s\" \"%s\"",
+		       first_name, last_name);
+	#endif
+
+	name = create_name(first_name, last_name);
+	return name;
 }

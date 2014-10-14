@@ -40,3 +40,6 @@ int plist(entry_ptr_t origin);
 
 int add(void);
 
+name_t *ask_name(void);
+
+char *remove_newline(char *input);
