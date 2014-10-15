@@ -1,17 +1,18 @@
-CFLAGS = -pedantic-errors -Wall -I. -lm
-SOURCES = main.c list.c ninux.c
+CC = gcc
+CFLAGS = -pedantic-errors -Wall -I. -lm -std=c99 -g -ggdb
+OBJ = main.o list.o
+APPL = main.exe
 
-main: $(SOURCES)
-	gcc $(CFLAGS) -o main.o $(SOURCES) -I.
+.PHONY: all
+all : main.exe
 
-debug: $(SOURCES)
-	gcc $(CFLAGS) -o debug.o $(SOURCES) -I. -DDEBUG
-
-all: $(SOURCES)
-	gcc $(CFLAGS) -o main.o $(SOURCES) -I.
-	gcc $(CFLAGS) -o debug.o $(SOURCES) -I. -DDEBUG
+$(APPL) : $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
-
 clean:
-	rm *.o
+	rm -f *.o
+	rm -f $(APPL)
+
+%.obj : %.c Makefile
+	$(CC) $(CFLAGS) –c $(.SOURCE)
