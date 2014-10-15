@@ -86,10 +86,13 @@ static name_t* createName(char *firstName, char *lastName)
   }
   p_name->first = malloc(strlen(firstName));
   if (NULL == p_name->first) {
+    free(p_name);
     return NULL;
   }
   p_name->last = malloc(strlen(lastName));
   if (NULL == p_name->last) {
+    free(p_name->first);
+    free(p_name);
     return NULL;
   }
   
@@ -105,7 +108,7 @@ static entry_ptr_t createEntry(name_t* pName)
   
   //!!!!!!!!!!!!!!!!! ERROR
   //pEntry = malloc(sizeof(name) + sizeof(entry_ptr_t));
-  pEntry = (entry_ptr_t)malloc(sizeof(entry_ptr_t));
+  pEntry = (entry_ptr_t)malloc(sizeof(entry_t));
   if (NULL == pEntry) {
     return NULL;
   }
