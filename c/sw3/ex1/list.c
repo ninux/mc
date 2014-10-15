@@ -28,117 +28,119 @@ published by
 #include <string.h>
 #include "list.h"
 
-#define MAX_NAMESIZE 20
+typedef struct entry *entry_ptr_t;
 
-extern entry_ptr_t head;
+typedef struct /*name*/ {
+  char *first;
+  char *last;
+} name_t;
 
-int plist(entry_ptr_t origin)
+typedef struct entry {
+  name_t *name;
+  //entry_ptr_t *next; !!!!!!!!
+  entry_ptr_t next;
+} entry_t;
+
+static entry_ptr_t head = NULL;
+
+static name_t* createName(char *firstName, char *lastName);
+static entry_ptr_t createEntry(name_t* pName);
+static void addToList(entry_ptr_t pEle);
+static void printAndAdvance(entry_ptr_t pEle, int nr);
+static void deleteBackwards(entry_ptr_t pEle, int nr);
+
+bool addEntry(char *first_name, char *last_name)
 {
-	entry_ptr_t ptr;
-
-	#ifdef DEBUG
-		printf("DEBUG: printing the list\n");
-	#endif
-
-	if (origin == NULL) {
-		printf("list is empty\n");
-		return -1;
-	} else {
-		ptr = origin;
-	}
-
-	printf("list\n");
-	printf("\thead:\t[ %s %s\n",
-	       (ptr->name)->first,
-	       (ptr->name)->last);
-	ptr = *(ptr->next);
-	do {
-		printf("\t\t-> %s %s\n",
-		       (ptr->name)->first,
-		       (ptr->name)->last);
-		ptr = *(ptr->next);
-	} while ((ptr->next) != NULL);
-	printf("\ttail:\t-> %s %s ]\n",
-		(ptr->name)->first,
-		(ptr->name)->last);
-
-	#ifdef DEBUG
-		printf("DEBUG: end of list\n");
-	#endif
-	return 0;
+  name_t* pName;
+  entry_ptr_t pEle;
+  pName = createName(first_name, last_name);
+  if (NULL != pName) {
+    pEle = createEntry(pName);
+    if (NULL != pEle) {
+      addToList(pEle);
+      return true;
+    }
+  }
+  return false;
 }
 
-int add(void)
+int plist(void)
 {
-	name_t *a_name;
-	entry_t *a_entry;
-
-	a_name = malloc(sizeof(name_t));
-	a_entry = malloc(sizeof(entry_t));
-
-	a_name = ask_name();
-	a_entry = create_entry(a_name, head->next);
-
-	head = a_entry;
-
-	#ifdef DEBUG
-		printf("DEBUG: adding entry to list\n");
-		printf("DEBUG: new head at \"%s\" \"%s\"\n",
-		       (head->name)->first,
-		       (head->name)->last);
-	#endif
-
-	return 0;
+  printAndAdvance(head, 0);
+  return 0;
 }
 
-name_t *create_name(char *first_name, char *last_name)
+void delList(void)
 {
-	name_t* p_name;
-
-	p_name = (name_t*)malloc(sizeof(name_t));
-
-	p_name->first = malloc(strlen(first_name));
-	p_name->last = malloc(strlen(last_name));
-
-	strcpy(p_name->first, first_name);
-	strcpy(p_name->last, last_name);
-
-	return p_name;
+  deleteBackwards(head, 0);
+  head = NULL;
 }
 
-
-entry_t *create_entry(name_t *name, entry_ptr_t *next)
+static name_t* createName(char *firstName, char *lastName)
 {
-	entry_t *entry;
-
-	entry = malloc(sizeof(name) + sizeof(entry_ptr_t));
-
-	entry->name = name;
-	entry->next = next;
-
-	return entry;
+  name_t* p_name;
+  
+  p_name = (name_t*)malloc(sizeof(name_t));
+  if (NULL == p_name){
+    return NULL;
+  }
+  p_name->first = malloc(strlen(firstName));
+  if (NULL == p_name->first) {
+    return NULL;
+  }
+  p_name->last = malloc(strlen(lastName));
+  if (NULL == p_name->last) {
+    return NULL;
+  }
+  
+  strcpy(p_name->first, firstName);
+  strcpy(p_name->last, lastName);
+  
+  return p_name;
 }
 
-name_t *ask_name(void)
+static entry_ptr_t createEntry(name_t* pName)
 {
-	name_t *name;
-	char first_name[MAX_NAMESIZE];
-	char last_name[MAX_NAMESIZE];
+  entry_ptr_t pEntry;
+  
+  //!!!!!!!!!!!!!!!!! ERROR
+  //pEntry = malloc(sizeof(name) + sizeof(entry_ptr_t));
+  pEntry = (entry_ptr_t)malloc(sizeof(entry_ptr_t));
+  if (NULL == pEntry) {
+    return NULL;
+  }
 
-	scanf("%*[^\n]"); (void) getchar ();
-	printf("\tfirst name: ");
-	fgets(first_name, MAX_NAMESIZE, stdin);
-	strtok(first_name, "\n");
+  pEntry->name = pName;
+  pEntry->next = NULL;
+  
+  return pEntry;
+}
 
-	printf("\tlast name: ");
-	fgets(last_name, MAX_NAMESIZE, stdin);
-	strtok(last_name, "\n");
+static void addToList(entry_ptr_t pEle)
+{
+  //insert front
+  pEle->next = head;
+  head = pEle;
+}
 
-	#ifdef DEBUG
-		printf("DEBUG: given name is \"%s\" \"%s\"\n",
-		       first_name, last_name);
-	#endif
+static void printAndAdvance(entry_ptr_t pEle, int nr)
+{
+  if (NULL != pEle) {
+    printf("Element Nr: %3d; ", nr);
+    printf("  %s %s\n", pEle->name->first, pEle->name->last);
+    printAndAdvance(pEle->next, nr + 1);
+  }
+}
 
-	name = create_name(first_name, last_name);
-	return name;
+static void deleteBackwards(entry_ptr_t pEle, int nr)
+{
+  if (NULL != pEle) {
+    deleteBackwards(pEle->next, nr + 1);
+    printf("REMOVE Element Nr: %3d; ", nr);
+    printf("  %s %s\n", pEle->name->first, pEle->name->last);
+    free(pEle->name->first);
+    free(pEle->name->last);
+    free(pEle->name);
+    free(pEle);
+  }
 }

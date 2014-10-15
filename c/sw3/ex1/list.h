@@ -20,24 +20,11 @@
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+#include <stdbool.h>
 
-typedef struct entry *entry_ptr_t;
+bool addEntry(char *first_name, char *last_name);
 
-typedef struct name {
-       char *first;
-       char *last;
-} name_t;
+int plist(void);
 
-typedef struct entry {
-	name_t *name;
-	entry_ptr_t *next;
-} entry_t;
+void delList(void);
 
-name_t *create_name(char *first_name, char *last_name);
-entry_t *create_entry(name_t *name, entry_ptr_t *next);
-
-int plist(entry_ptr_t origin);
-
-int add(void);
-
-name_t *ask_name(void);
