@@ -110,6 +110,8 @@ static entry_ptr_t createEntry(name_t* pName)
     //pEntry = malloc(sizeof(name) + sizeof(entry_ptr_t));
     pEntry = (entry_ptr_t)malloc(sizeof(entry_t));
     if (NULL == pEntry) {
+        //TODO: Should free all memory pName points too. Otherwise
+        // there will remain unreferenced memory on the heap.
         return NULL;
     }
 
