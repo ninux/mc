@@ -1,20 +1,18 @@
-CFLAGS = -pedantic-errors -Wall -I. -lm -std=c99
-SOURCES = main.c list.c
+CC = gcc
+CFLAGS = -pedantic-errors -Wall -I. -lm -std=c99 -g -ggdb
+OBJ = main.o list.o
+APPL = main.exe
 
 .PHONY: all
-all : all_internal
+all : main.exe
 
-main: $(SOURCES)
-	gcc $(CFLAGS) -o main.o $(SOURCES) -I.
-
-debug: $(SOURCES)
-	gcc $(CFLAGS) -o debug.o $(SOURCES) -I. -DDEBUG
-
-all_internal: $(SOURCES)
-	gcc $(CFLAGS) -o main.o $(SOURCES) -I.
-	gcc $(CFLAGS) -o debug.o $(SOURCES) -I. -DDEBUG
-
+$(APPL) : $(OBJ)
+	$(CC) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
 clean:
 	rm -f *.o
+	rm -f $(APPL)
+
+%.obj : %.c Makefile
+	$(CC) $(CFLAGS) –c $(.SOURCE)
