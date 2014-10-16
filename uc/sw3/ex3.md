@@ -21,7 +21,7 @@ $0980 	| FF| 4E| 06| 02| 4E| 06| 02| 4E| 06| 02| 4E| 06| 02| 5A| 26| F1
 $0990   | AE| FF| 4B| ED| B6| C1| 49| B7| C1| B7| 0A| 48| 48| 48| 48| B7
 $09A0   | 08| 20| DA| --| --| --| --| --| --| --| --| --| --| --| --| --
 
-Now we can read the data much efficently.
+Now we can read the data more efficently.
 
 Address | Mnemonic | OpCode | Operand 1 | Operand 2 | Comment
 --------|----------|--------|-----------|-----------|--------
