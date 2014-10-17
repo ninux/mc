@@ -6,9 +6,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as ndet [-Wuninitialized]
- [ninux@t430 ex1]$ make clean all
- published by
+ * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or (at
  * your option) any later version.
  *
@@ -30,14 +28,13 @@
 
 typedef struct entry *entry_ptr_t;
 
-typedef struct /*name*/ {
+typedef struct {	/* noname structure forces usage of new type */
     char *first;
     char *last;
 } name_t;
 
 typedef struct entry {
     name_t *name;
-    //entry_ptr_t *next; !!!!!!!!
     entry_ptr_t next;
 } entry_t;
 
@@ -106,24 +103,23 @@ static entry_ptr_t createEntry(name_t* pName)
 {
     entry_ptr_t pEntry;
 
-    //!!!!!!!!!!!!!!!!! ERROR
-    //pEntry = malloc(sizeof(name) + sizeof(entry_ptr_t));
-    pEntry = (entry_ptr_t)malloc(sizeof(entry_t));
+    pEntry = (entry_ptr_t)malloc(sizeof(entry_t)); /* why not sizeof(entry_ptr_t) ? */
     if (NULL == pEntry) {
-        //TODO: Should free all memory pName points too. Otherwise
-        // there will remain unreferenced memory on the heap.
+	free(pName->first);
+	free(pName->last);
+	free(pName);
         return NULL;
+    } else {
+	pEntry->name = pName;
+	pEntry->next = NULL;
     }
-
-    pEntry->name = pName;
-    pEntry->next = NULL;
 
     return pEntry;
 }
 
 static void addToList(entry_ptr_t pEle)
 {
-    //insert front
+    /* insert front */
     pEle->next = head;
     head = pEle;
 }
