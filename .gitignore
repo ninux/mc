@@ -4,3 +4,4 @@
 # executables/binaries
 *.o
 *.bin
+*.exe
