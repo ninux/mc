@@ -22,12 +22,21 @@
 */
 
 #include <stdio.h>
+#include "stack.h"
 
 int main(int argc, char **argv)
 {
 	#ifdef DEBUG
 		printf("DEBUG: started main\n");
 	#endif
+
+	push(1);
+	push(2);
+	push(3);
+
+	printf("%i", pop());
+	printf("%i", pop());
+	printf("%i", pop());
 
 	return 0;
 }

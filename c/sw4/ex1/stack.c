@@ -1,5 +1,5 @@
 /*
-* calc.c - Calculator engine
+* stack.c - Stack
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,8 +21,22 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#ifndef CALC
-	#define CALC
-	#include <calc.c>
-#endif
+#include <stack.h>
 
+int push(int i)
+{
+	#ifdef DEBUG
+		printf("DEBUG: push\n");
+	#endif
+
+	return i;
+}
+
+int pop(void)
+{
+	#ifdef DEBUG
+		printf("DEBUG: pop\n");
+	#endif
+
+	return 0;
+}

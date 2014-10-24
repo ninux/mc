@@ -1,5 +1,5 @@
 /*
-* clif.c - Command-line interface
+* stack.h - Stack
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,3 +21,20 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+#ifndef STDIO
+	#define STDIO
+	#include <stdio.h>
+#endif
+
+#ifndef STDLIB
+	#define STDLIB
+	#include <stdlib.h>
+#endif
+
+#ifndef STACK
+	#define STACK
+	#include "stack.h"
+#endif
+
+int push(int i);
+int pop(void);
