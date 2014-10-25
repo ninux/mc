@@ -1,5 +1,5 @@
 /*
-* main.c - Creating some matrices
+* main.c - Matrix creation
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,21 +21,14 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#ifndef STDIO
-	#define STDIO
-	#include <stdio.h>
-#endif
-
-#ifndef MATRIX
-	#define MATRIX
-	#include "matrix.h"
-#endif
+#include <stdio.h>
+#include "matrix.h"
+#include "debug.h"
 
 int main(int argv, char **argc)
 {
 	int **m;
 	int rows, cols, init;
-
 	if (argv == 4) {
 		rows = atoi(argc[1]);
 		cols = atoi(argc[2]);
@@ -58,16 +51,13 @@ int main(int argv, char **argc)
 		printf("exiting...\n");
 		return -1;
 	}
-
 	#ifdef DEBUG
 		printf("DEBUG: started main\n");
 	#endif
-
 	m = create_matrix(rows, cols, init);
-
+	destroy_matrix(m);
 	#ifdef DEBUG
 		printf("DEBUG: exiting main\n");
 	#endif
-
 	return 0;
 }

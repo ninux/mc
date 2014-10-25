@@ -35,10 +35,22 @@ int **create_matrix(const int rows, const int cols, const int init)
 	r = 0;
 	c = 0;
 
-	matrix = (int **)malloc(rows*sizeof(int *));
+	matrix = (int **)malloc(rows*sizeof(int *)+1);
+	matrix[rows] = NULL;
+	if (matrix == NULL) {
+		return NULL;
+	}
 
 	for(r = 0; r < rows; r++) {
 		matrix[r] = (int *)malloc(cols*sizeof(int));
+		if (matrix[r] == NULL) {
+			while ((r-1) >= 0) {
+				r = r-1;
+				free(matrix[r]);
+			}
+			free(matrix);
+			return NULL;
+		}
 		for(c = 0; c < cols; c++) {
 			matrix[r][c] = init;
 		}
@@ -70,23 +82,23 @@ int _print_matrix(int **matrix, const int rows, const int cols)
 	return 0;
 }
 
+int destroy_matrix(int **matrix)
+{
+	int ctr;
+	ctr = 0;
 
+	_dbgmsg(destroying matrix);
 
+	if (matrix == NULL) {
+		return 0;
+	}
 
+	while (matrix[ctr] != NULL) {
+		free(matrix[ctr]);
+		ctr++;
+	}
 
+	free(matrix);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return 0;
+}

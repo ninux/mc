@@ -1,5 +1,5 @@
 /*
-* matrix.c - Matrix creation
+* debug.h - Debug utilities
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,19 +21,23 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#ifndef MATRIX
-	#define MATRIX
-	#include "matrix.h"
+#ifndef DEBUG_H
+#define DEBUG_H
+
+
+#ifdef DEBUG
+#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " MESSAGE "\n", __VA_ARGS__)
+#else
+#define _dbgmsg(MESSAGE, ...) do {} while(0)
 #endif
 
-#ifndef STDIO
-	#define STDIO
-	#include <stdio.h>
+/*
+#ifdef DEBUG
+	#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " #MESSAGE "\n", \
+	__VA_ARGS__)
+#else
+	#define _dbgmsg(MESSAGE) {}
 #endif
+*/
 
-#ifndef STDLIB
-	#define STDLIB
-	#include <stdlib.h>
-#endif
-
-int **create_matrix(const int rows, const int cols, const int init);
+#endif /* DEBUG_H */
