@@ -87,7 +87,11 @@ int destroy_matrix(int **matrix)
 	int ctr;
 	ctr = 0;
 
-	_dbgmsg(destroying matrix);
+	#ifdef DEBUG
+		printf("DEBUG: destroying matrix\n");
+	#endif
+
+	/* _dbgmsg("destroying matrix"); */
 
 	if (matrix == NULL) {
 		return 0;

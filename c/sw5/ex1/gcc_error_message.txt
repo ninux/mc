@@ -1,0 +1,14 @@
+[ninux@t430 ex1]$ make all
+gcc -Wall -Wextra -I. -lm -std=c99 -Wno-variadic-macros -o main.o main.c matrix.c
+gcc -Wall -Wextra -I. -lm -std=c99 -Wno-variadic-macros -o debug.o main.c matrix.c -DDEBUG
+In file included from matrix.h:27:0,
+                 from matrix.c:24:
+matrix.c: In Funktion »destroy_matrix«:
+debug.h:29:73: Fehler: expected expression before »)« token
+ #define _dbgmsg(MESSAGE, ...) printf("DEBUG: " MESSAGE "\n", __VA_ARGS__)
+                                                                         ^
+matrix.c:90:2: Anmerkung: bei Substitution des Makros »_dbgmsg«
+  _dbgmsg("destroying matrix");
+  ^
+Makefile:11: recipe for target 'all' failed
+make: *** [all] Error 1

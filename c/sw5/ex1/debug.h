@@ -24,13 +24,17 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-
+/* second attempt */
+/*
 #ifdef DEBUG
 #define _dbgmsg(MESSAGE, ...) printf("DEBUG: " MESSAGE "\n", __VA_ARGS__)
 #else
 #define _dbgmsg(MESSAGE, ...) do {} while(0)
 #endif
+*/
 
+
+/* first attempt */
 /*
 #ifdef DEBUG
 	#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " #MESSAGE "\n", \
