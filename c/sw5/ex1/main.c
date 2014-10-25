@@ -41,7 +41,7 @@ int main(int argv, char **argc)
 		#endif
 	} else if (argv == 1) {
 		#ifdef DEBUG
-			printf("DEBUG: no parameters -> creating default");
+			printf("DEBUG: no parameters -> creating default\n");
 		#endif
 		rows = 3;
 		cols = 3;
