@@ -29,6 +29,12 @@ int main(int argv, char **argc)
 {
 	int **m;
 	int rows, cols, init;
+
+	#ifdef DEBUG
+		_print_info();
+		printf("DEBUG: started main\n");
+	#endif
+
 	if (argv == 4) {
 		rows = atoi(argc[1]);
 		cols = atoi(argc[2]);
@@ -41,7 +47,9 @@ int main(int argv, char **argc)
 		#endif
 	} else if (argv == 1) {
 		#ifdef DEBUG
-			printf("DEBUG: no parameters -> creating default\n");
+			printf("DEBUG: "
+			       "no parameters given"
+			       "-> creating default matrix 3x3 with 3\n");
 		#endif
 		rows = 3;
 		cols = 3;
@@ -51,11 +59,10 @@ int main(int argv, char **argc)
 		printf("exiting...\n");
 		return -1;
 	}
-	#ifdef DEBUG
-		printf("DEBUG: started main\n");
-	#endif
+
 	m = create_matrix(rows, cols, init);
 	destroy_matrix(m);
+
 	#ifdef DEBUG
 		printf("DEBUG: exiting main\n");
 	#endif

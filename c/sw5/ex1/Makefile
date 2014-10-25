@@ -1,5 +1,5 @@
 CFLAGS = -pedantic-errors -Wall -Wextra -I. -lm -std=c89
-SOURCES = main.c matrix.c
+SOURCES = main.c matrix.c debug.c
 
 main:
 	gcc $(CFLAGS) -o main.o $(SOURCES)

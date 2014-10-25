@@ -1,5 +1,5 @@
 /*
-* debug.h - Debug utilities
+* debug.c - Debug utilities
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,32 +21,9 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#ifndef DEBUG_H
-#define DEBUG_H
+#include "debug.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
-/* second attempt */
-/*
-#ifdef DEBUG
-#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " MESSAGE "\n", __VA_ARGS__)
-#else
-#define _dbgmsg(MESSAGE, ...) do {} while(0)
-#endif
-*/
-
-
-/* first attempt */
-/*
-#ifdef DEBUG
-	#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " #MESSAGE "\n", \
-	__VA_ARGS__)
-#else
-	#define _dbgmsg(MESSAGE) {}
-#endif
-*/
-
-void _print_info();
-
-#endif /* DEBUG_H */
+void _print_info()
+{
+	printf("DEBUG: last build on %s at %s\n", __DATE__, __TIME__);
+}
