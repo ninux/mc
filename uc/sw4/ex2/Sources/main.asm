@@ -57,7 +57,20 @@ Stackinit:      LDHX    #(BofStack+1)
 ; Start des Benutzer-Codes
 ;--------------------------------------------------------------------   
 
-main:  		
+main:  		; clear the carry flag wit a bit-mask
+		TPA			; load the CCR to accu
+		AND	#$FE		; apply the bitmask [1111'1110] to clear the carry flag
+		TAP			; write the result to CCR
+
+		; set the overflow flag with a bit-mask
+		TPA			; load the CCR to accu
+		ORA	#$80		; load the bitmask [1000'0000] to set the overflow flag 
+		TAP			; write the result to CCR
+
+		; clear the carry flag and set the overflow flag without using a bit-mask
+		CLC			; clear carry bit
+		; there is no isntruction to set the overflow flag directly
+		; onyl a isntruction BSET is available to set a bit in a memory address
 
 EndLoop:        BRA     *               ; Endlos-Loop (=Programmende falls weiter oben Loop vergessen wurde)
                 

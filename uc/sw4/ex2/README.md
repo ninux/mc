@@ -1,7 +1,9 @@
 # Exercise 2, SW2
 
-Write a program that clears the carry-flag in the CCR register with a 
-bit-mask.
+Write a program that
+* clears the carry-flag in the CCR register with a bit-mask
+* sets the overflow-flag in the CCR register with a bit-mask
+* does the same as before but without using bit-masks
 
 # CCR register
 
