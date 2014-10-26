@@ -57,54 +57,7 @@ Stackinit:      LDHX    #(BofStack+1)
 ; Start des Benutzer-Codes
 ;--------------------------------------------------------------------   
 
-main:  		LDA	#$FF
-		STA	$00C0
-		STA	$00C1
-
-		BSET	0, PTFDD	; set F0 as output
-		BSET	1, PTFDD	; set F1 as output
-		BSET	2, PTFDD	; set F2 as output
-		BSET	7, PTEDD	; set E7 as output
-		
-		BSET	0, PTFD		; clear output
-		BSET	1, PTFD		; clear output
-		BSET	2, PTFD		; clear output
-		BSET	7, PTED		; clear output
-
-		LDHX 	#$00C0		; read operand 1			        
-		LDA	1, X		; read operand 2
-		
-		BRA	Armop		; jump to arithmetic operation
-
-
-CheckC:		BRCLR	0, $00C1, CheckZ
-CarrySet:	BCLR	0, PTFD
-
-CheckZ:		BRCLR	1, $00C1, CheckV
-ZSet:		BCLR	1, PTFD
-
-CheckV:		BRCLR	7, $00C1, CheckN
-VSet:		BCLR	7, PTED	
-
-CheckN:		BRCLR	2, $00C1, EndLoop
-		BCLR	2, PTFD
-	
-		BRA	EndLoop
-
-Armop:		;ADD	1, X
-		SUB	1, X
-
-		TPA			; copy CCR to A
-		STA	$00C1		; copy CCR to CCR_Result
-
-		STA	$00C0		; save the result
-		LDHX	$00C0		; write the result to X register
-		BRA	CheckC
-
-LightsOn:	BCLR	0, PTFD
-		BCLR	1, PTFD
-		BCLR	2, PTFD
-		BCLR	7, PTED
+main:  		
 
 EndLoop:        BRA     *               ; Endlos-Loop (=Programmende falls weiter oben Loop vergessen wurde)
                 
