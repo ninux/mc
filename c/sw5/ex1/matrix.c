@@ -41,7 +41,7 @@ int **create_matrix(const int rows, const int cols, const int init)
 		_dbgerr("allocating memory failed");
 		return NULL;
 	} else {
-		_dbgmsg("allocated memory for %i rows at", rows, matrix);
+		_dbgmsg("allocated memory for %i rows at <%i>", rows, matrix);
 	}
 
 	for(r = 0; r < rows; r++) {
@@ -51,14 +51,15 @@ int **create_matrix(const int rows, const int cols, const int init)
 			while ((r-1) >= 0) {
 				r = r-1;
 				_dbgnice("freeing already allocated "
-					"column %i", r);
+					"column %i at <%i>", r, matrix[r]);
 				free(matrix[r]);
 			}
 			free(matrix);
 			_dbgnice("finished freeing");
 			return NULL;
 		} else {
-			_dbgmsg("allocated memory for column %i", r+1);
+			_dbgmsg("allocated memory for column %i at <%i>", 
+				r+1, matrix[r]);
 			for(c = 0; c < cols; c++) {
 				matrix[r][c] = init;
 			}
@@ -95,13 +96,15 @@ int destroy_matrix(int **matrix)
 	int ctr;
 	ctr = 0;
 
-	_dbgmsg("freeing matrix");
+	_dbgmsg("freeing matrix from head to tail");
 
 	if (matrix == NULL) {
+		_dbgwarn("matrix is already empty");
 		return 0;
 	}
 
 	while (matrix[ctr] != NULL) {
+		_dbgmsg("freeing row %i at <%i>", ctr, matrix[ctr]);
 		free(matrix[ctr]);
 		ctr++;
 	}
