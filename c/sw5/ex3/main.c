@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "semaphore.h"
 
 int getPhaseTime(SemaphorStates_t phase)
@@ -41,9 +42,8 @@ int getPhaseTime(SemaphorStates_t phase)
 
 int main(int argc, char** argv)
 {
-	/* !!! To do: Set callback function !!!
-	setSemaphorCallbackFunction(...);
-	*/
+	/* !!! To do: Set callback function !!! */
+	setSemaphorCallbackFunction(&getPhaseTime);
 
 	printf("Starting the semaphor...\n");
 	startSemaphore();

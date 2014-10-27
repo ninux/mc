@@ -1,4 +1,9 @@
-CFLAGS = -pedantic-errors -Wall -Wextra -I. -lm -std=c89 -lpthread
+# hard rules applied
+#CFLAGS = -pedantic-errors -Wall -Wextra -I. -lm -std=c89 -lpthread
+
+# easy rules applied
+CFLAGS = -I. -lm -std=c89 -lpthread
+
 SOURCES = main.c semaphore.c
 
 main:

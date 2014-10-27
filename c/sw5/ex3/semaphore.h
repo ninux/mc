@@ -43,6 +43,7 @@ typedef enum SemaphoreStates_ {
  *	The function gets as Parameter the current semaphore state.
  */
 /* !!! To do !!! void setSemaphoreCallbackFunction(...); */
+void setSemaphoreCallbackFunction(void* a);
 
 /**
  * Starts the semaphor.

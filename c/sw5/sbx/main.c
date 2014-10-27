@@ -1,8 +1,15 @@
 #include <stdio.h>
 
+int (*any)(int, int);
+
 int add(int a, int b)
 {
 	return (a + b);
+}
+
+void set(void (*bar))
+{
+	any = bar;
 }
 
 int main(int argv, char **argc)
@@ -22,6 +29,10 @@ int main(int argv, char **argc)
 
 	printf("Usual function:\t\t%i + %i = %i\n", a, b, add(a, b));
 	printf("Callback function:\t%i + %i = %i\n", a, b, foo(a, b));
+
+	set(&add);
+
+	printf("Registered function:\t%i + %i = %i\n", a, b, any(a, b));
 
 	return 0;
 }

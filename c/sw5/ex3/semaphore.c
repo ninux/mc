@@ -25,10 +25,12 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
+#include <unistd.h>
 #include "semaphore.h"
 
 /* !!! To do: Define a variable getPhaseTimeFunction of type
    'pointer-to-function' for the callback function and set it to NULL */
+int (*getPhaseTimeFunction)(SemaphorStates_t) = NULL;
 
 static int threadRunning = 0;
 static SemaphorStates_t state = RED;
@@ -69,11 +71,13 @@ static void* threadFunction(void* args)
 					state = RED;		break;
 		}
 
-/* !!! To do: Call here the callback function to get the sleep time
+/* !!! To do: Call here the callback function to get the sleep time */
 		if (getPhaseTimeFunction != NULL)
 		{
-			sleepTime = ...;
-*/
+			sleepTime = getPhaseTimeFunction(state);
+		} else {
+			sleepTime = 1;
+		}
 		printThreadState(sleepTime);
 		sleep(sleepTime);
 	}
@@ -83,12 +87,11 @@ static void* threadFunction(void* args)
 }
 
 
-/* !!! To do !!!
-void setSemaphorCallbackFunction(...)
+/* !!! To do !!! */
+void setSemaphorCallbackFunction(void (*a))
 {
-	getPhaseTimerFunction = 
+	getPhaseTimeFunction = a;
 }
-*/
 
 void startSemaphore()
 {
