@@ -55,8 +55,12 @@
 #endif
 
 #ifdef DEBUG
-#define _dbginfo() printf("<DEBUG>: last build on %s at %s\n", \
-			  __DATE__, __TIME__)
+#define _dbginfo() printf("<DEBUG>: build information:" \
+			  "\n\t Date\t%s" \
+			  "\n\t Time\t%s " \
+			  "\n\t GCC\t%s" \
+			  "\n\t C rev\t%i\n" , \
+			  __DATE__, __TIME__, __VERSION__, __STDC_VERSION__)
 #else
 #define _dbginfo()
 #endif
