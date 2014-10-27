@@ -27,26 +27,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* second attempt */
-/*
 #ifdef DEBUG
-#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " MESSAGE "\n", __VA_ARGS__)
+#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " MESSAGE "\n", ##__VA_ARGS__)
 #else
 #define _dbgmsg(MESSAGE, ...) do {} while(0)
 #endif
-*/
 
-
-/* first attempt */
-/*
 #ifdef DEBUG
-	#define _dbgmsg(MESSAGE, ...) printf("DEBUG: " #MESSAGE "\n", \
-	__VA_ARGS__)
+#define _dbgerr(MESSAGE, ...) printf("DEBUG: %s" MESSAGE "%s\n", _RED_, \
+	##__VA_ARGS__, _RESET_)
 #else
-	#define _dbgmsg(MESSAGE) {}
+#define _dbgerr(MESSAGE, ...) do {} while(0)
 #endif
-*/
 
-void _print_info();
+#ifdef DEBUG
+#define _dbgwarn(MESSAGE, ...) printf("DEBUG: %s" MESSAGE "%s\n", _YELLOW_, \
+	##__VA_ARGS__, _RESET_)
+#else
+#define _dbgwarn(MESSAGE, ...) do {} while(0)
+#endif
+
+#ifdef DEBUG
+#define _dbgnice(MESSAGE, ...) printf("DEBUG: %s" MESSAGE "%s\n", _GREEN_, \
+	##__VA_ARGS__, _RESET_)
+#else
+#define _dbgnice(MESSAGE, ...) do {} while(0)
+#endif
+
+#ifdef DEBUG
+#define _dbginfo() printf("DEBUG: last build on %s at %s\n", __DATE__, __TIME__)
+#else
+#define _dbginfo()
+#endif
+
+#define _RED_		"\x1b[31m"
+#define _GREEN_		"\x1b[32m"
+#define _YELLOW_	"\x1b[33m"
+#define _BLUE_		"\x1b[34m"
+#define _RESET_		"\x1b[0m"
 
 #endif /* DEBUG_H */

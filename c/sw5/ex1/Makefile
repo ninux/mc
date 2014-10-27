@@ -1,4 +1,6 @@
-CFLAGS = -pedantic-errors -Wall -Wextra -I. -lm -std=c89
+# CFLAGS = -pedantic-errors -Wall -Wextra -I. -lm -std=c89
+CFLAGS = -I. -lm -std=gnu11 -Wno-variadic-macros
+
 SOURCES = main.c matrix.c debug.c
 
 main:

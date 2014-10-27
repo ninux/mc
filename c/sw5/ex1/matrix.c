@@ -38,21 +38,30 @@ int **create_matrix(const int rows, const int cols, const int init)
 	matrix = (int **)malloc(rows*sizeof(int *)+1);
 	matrix[rows] = NULL;
 	if (matrix == NULL) {
+		_dbgerr("allocating memory failed");
 		return NULL;
+	} else {
+		_dbgmsg("allocated memory for %i rows at", rows, matrix);
 	}
 
 	for(r = 0; r < rows; r++) {
 		matrix[r] = (int *)malloc(cols*sizeof(int));
 		if (matrix[r] == NULL) {
+			_dbgerr("allocating memory failed");
 			while ((r-1) >= 0) {
 				r = r-1;
+				_dbgnice("freeing already allocated "
+					"column %i", r);
 				free(matrix[r]);
 			}
 			free(matrix);
+			_dbgnice("finished freeing");
 			return NULL;
-		}
-		for(c = 0; c < cols; c++) {
-			matrix[r][c] = init;
+		} else {
+			_dbgmsg("allocated memory for column %i", r+1);
+			for(c = 0; c < cols; c++) {
+				matrix[r][c] = init;
+			}
 		}
 	}
 
@@ -68,9 +77,8 @@ int _print_matrix(int **matrix, const int rows, const int cols)
 	r = rows;
 	c = cols;
 
-	#ifdef DEBUG
-	printf("DEBUG: created %ix%i matrix\n", rows, cols);
-	#endif
+	_dbgmsg("created %ix%i matrix", rows, cols);
+
 	for(r = 0; r < rows; r++) {
 		printf("\t");
 		for(c = 0; c < cols; c++) {
@@ -87,11 +95,7 @@ int destroy_matrix(int **matrix)
 	int ctr;
 	ctr = 0;
 
-	#ifdef DEBUG
-		printf("DEBUG: destroying matrix\n");
-	#endif
-
-	/* _dbgmsg("destroying matrix"); */
+	_dbgmsg("freeing matrix");
 
 	if (matrix == NULL) {
 		return 0;
@@ -103,6 +107,7 @@ int destroy_matrix(int **matrix)
 	}
 
 	free(matrix);
+	_dbgnice("finished freeing");
 
 	return 0;
 }

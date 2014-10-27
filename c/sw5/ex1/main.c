@@ -30,31 +30,28 @@ int main(int argv, char **argc)
 	int **m;
 	int rows, cols, init;
 
-	#ifdef DEBUG
-		_print_info();
-		printf("DEBUG: started main\n");
-	#endif
+	_dbginfo();
+	_dbgmsg("started main");
 
 	if (argv == 4) {
 		rows = atoi(argc[1]);
 		cols = atoi(argc[2]);
 		init = atoi(argc[3]);
-		#ifdef DEBUG
-			printf("DEBUG: %i parameters given:\n", argv);
-			printf("\trows\t%i\n", rows);
-			printf("\tcolumns\t%i\n", cols);
-			printf("\tinitial\t%i\n", init);
-		#endif
+
+		_dbgmsg("%i parameters given:", argv);
+		_dbgmsg("\t\trows\t%i", rows);
+		_dbgmsg("\t\tcolumns\t%i", cols);
+		_dbgmsg("\t\tinitial\t%i", init);
+
 	} else if (argv == 1) {
-		#ifdef DEBUG
-			printf("DEBUG: "
-			       "no parameters given"
-			       "-> creating default matrix 3x3 with 3\n");
-		#endif
+		_dbgwarn("no parameters given "
+			"-> creating default matrix 3x3 "
+			"initialized with 3");
 		rows = 3;
 		cols = 3;
 		init = 3;
 	} else {
+		_dbgerr("wrong syntax -> exiting...");
 		printf("wrong syntax\n");
 		printf("exiting...\n");
 		return -1;
@@ -63,8 +60,6 @@ int main(int argv, char **argc)
 	m = create_matrix(rows, cols, init);
 	destroy_matrix(m);
 
-	#ifdef DEBUG
-		printf("DEBUG: exiting main\n");
-	#endif
+	_dbgmsg("exiting main");
 	return 0;
 }
