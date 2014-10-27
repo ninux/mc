@@ -55,12 +55,19 @@
 #endif
 
 #ifdef DEBUG
-#define _dbginfo() printf("<DEBUG>: build information:" \
-			  "\n\t Date\t%s" \
-			  "\n\t Time\t%s " \
-			  "\n\t GCC\t%s" \
-			  "\n\t C rev\t%i\n" , \
-			  __DATE__, __TIME__, __VERSION__, __STDC_VERSION__)
+#define _dbginfo() printf("<DEBUG>: %s"		\
+			  "build information:"	\
+			  "\n\t Date\t%s"	\
+			  "\n\t Time\t%s "	\
+			  "\n\t GCC\t%s"	\
+			  "\n\t C rev\t%i\n"	\
+			  "%s",			\
+			  _BLUE_,		\
+			  __DATE__,		\
+			  __TIME__,		\
+			  __VERSION__,		\
+			  __STDC_VERSION__,	\
+			  _RESET_)
 #else
 #define _dbginfo()
 #endif
