@@ -39,9 +39,9 @@ int main(int argv, char **argc)
 		init = atoi(argc[3]);
 
 		_dbgmsg("%i parameters given:", argv);
-		_dbgmsg("\t\trows\t%i", rows);
-		_dbgmsg("\t\tcolumns\t%i", cols);
-		_dbgmsg("\t\tinitial\t%i", init);
+		_dbgmsg("\trows\t%i", rows);
+		_dbgmsg("\tcolumns\t%i", cols);
+		_dbgmsg("\tinitial\t%i", init);
 
 	} else if (argv == 1) {
 		_dbgwarn("no parameters given "
