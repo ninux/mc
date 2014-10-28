@@ -32,9 +32,6 @@
 
 int main(int argv, char **argc)
 {
-	int **m;
-	int rows, cols, init;
-
 	#ifdef DEBUG
 		/* limiting memory space */
 		struct rlimit rl;
@@ -47,6 +44,9 @@ int main(int argv, char **argc)
 		_dbgwarn("change memory space to %lld", (long long
 							int)rl.rlim_cur);
 	#endif
+
+	int **m;
+	int rows, cols, init;
 
 	_dbginfo();
 	_dbgmsg("started main");
