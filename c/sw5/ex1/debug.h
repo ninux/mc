@@ -27,6 +27,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MEMORY_LIMIT 10000
+
 #ifdef DEBUG
 #define _dbgmsg(MESSAGE, ...) printf("<DEBUG>: " MESSAGE "\n", ##__VA_ARGS__)
 #else
@@ -55,19 +57,16 @@
 #endif
 
 #ifdef DEBUG
-#define _dbginfo() printf("<DEBUG>: %s"		\
+#define _dbginfo() printf("<DEBUG>: "		\
 			  "build information:"	\
 			  "\n\t Date\t%s"	\
 			  "\n\t Time\t%s "	\
 			  "\n\t GCC\t%s"	\
-			  "\n\t C rev\t%i\n"	\
-			  "%s",			\
-			  _BLUE_,		\
+			  "\n\t C rev\t%i\n",	\
 			  __DATE__,		\
 			  __TIME__,		\
 			  __VERSION__,		\
-			  __STDC_VERSION__,	\
-			  _RESET_)
+			  __STDC_VERSION__)
 #else
 #define _dbginfo()
 #endif

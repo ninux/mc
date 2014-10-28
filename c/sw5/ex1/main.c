@@ -22,6 +22,11 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/resource.h>
+#include <sys/time.h>
 #include "matrix.h"
 #include "debug.h"
 
@@ -29,6 +34,19 @@ int main(int argv, char **argc)
 {
 	int **m;
 	int rows, cols, init;
+
+	#ifdef DEBUG
+		/* limiting memory space */
+		struct rlimit rl;
+		getrlimit(RLIMIT_AS, &rl);
+		_dbgmsg("default memory limit is %lld", (long long
+							 int)rl.rlim_cur);
+		rl.rlim_cur = MEMORY_LIMIT;
+		setrlimit(RLIMIT_AS, &rl);
+		getrlimit(RLIMIT_AS, &rl);
+		_dbgwarn("change memory space to %lld", (long long
+							int)rl.rlim_cur);
+	#endif
 
 	_dbginfo();
 	_dbgmsg("started main");
