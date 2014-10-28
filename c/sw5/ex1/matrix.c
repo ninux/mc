@@ -35,13 +35,13 @@ int **create_matrix(const int rows, const int cols, const int init)
 	r = 0;
 	c = 0;
 
-	matrix = (int **)malloc(rows*sizeof(int *)+1);
-	matrix[rows] = NULL;
+	matrix = (int **)calloc((rows+1), sizeof(int *));
 	if (matrix == NULL) {
 		_dbgerr("allocating memory failed");
 		return NULL;
 	} else {
 		_dbgmsg("allocated memory for %i rows at <%i>", rows, matrix);
+		matrix[rows] = NULL;
 	}
 
 	for(r = 0; r < rows; r++) {
