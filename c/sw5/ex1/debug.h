@@ -27,7 +27,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MEMORY_LIMIT 7400000
+/* #define MEMORY_LIMIT 7400000 */
+#define MAX_ROWS 5
 
 #ifdef DEBUG
 #define _dbgmsg(MESSAGE, ...) printf("<DEBUG>: " MESSAGE "\n", ##__VA_ARGS__)

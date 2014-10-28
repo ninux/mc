@@ -32,7 +32,7 @@
 
 int main(int argv, char **argc)
 {
-	#ifdef DEBUG
+	#ifdef TESTING
 		/* limiting memory space */
 		struct rlimit rl;
 		getrlimit(RLIMIT_AS, &rl);
