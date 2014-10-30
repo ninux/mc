@@ -33,28 +33,28 @@
 #ifdef DEBUG
 #define _dbgmsg(MESSAGE, ...) printf("<DEBUG>: " MESSAGE "\n", ##__VA_ARGS__)
 #else
-#define _dbgmsg(MESSAGE, ...) do {} while(0)
+#define _dbgmsg(MESSAGE, ...)  
 #endif
 
 #ifdef DEBUG
 #define _dbgerr(MESSAGE, ...) printf("<DEBUG>: %s" MESSAGE "%s\n", _RED_, \
 	##__VA_ARGS__, _RESET_)
 #else
-#define _dbgerr(MESSAGE, ...) do {} while(0)
+#define _dbgerr(MESSAGE, ...)  
 #endif
 
 #ifdef DEBUG
 #define _dbgwarn(MESSAGE, ...) printf("<DEBUG>: %s" MESSAGE "%s\n", _YELLOW_, \
 	##__VA_ARGS__, _RESET_)
 #else
-#define _dbgwarn(MESSAGE, ...) do {} while(0)
+#define _dbgwarn(MESSAGE, ...)  
 #endif
 
 #ifdef DEBUG
 #define _dbgnice(MESSAGE, ...) printf("<DEBUG>: %s" MESSAGE "%s\n", _GREEN_, \
 	##__VA_ARGS__, _RESET_)
 #else
-#define _dbgnice(MESSAGE, ...) do {} while(0)
+#define _dbgnice(MESSAGE, ...)  
 #endif
 
 #ifdef DEBUG
