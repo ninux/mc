@@ -24,5 +24,12 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 
+int add_address(char *firstname,
+		char *lastname,
+		char *street,
+		int *number,
+		int *zipcode,
+		char *city);
+void show_all(void);
 
 #endif

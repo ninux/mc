@@ -39,7 +39,7 @@ typedef struct {
 typedef struct entry *entry_ptr_t;
 
 typedef struct entry {
-	address_t data;
+	address_t *data;
 	entry_ptr_t next;
 } entry_t;
 
@@ -56,9 +56,50 @@ static entry_ptr_t create_entry(address_t *data,
 				entry_ptr_t prev,
 				entry_ptr_t next);
 
-static void add(address_t *data);
-static void show_all();
-static void deleta_all();
+static int add_entry(address_t *data);
+
+static void deleta_all(void);
+
+int add_address(char *firstname,
+		char *lastname,
+		char *street,
+		int *number,
+		int *zipcode,
+		char *city);
+
+void show_all(void);
+
+int add_address(char *firstname,
+		char *lastname,
+		char *street,
+		int *number,
+		int *zipcode,
+		char *city)
+{
+	address_t *addr;
+	addr = create_address(firstname,
+			      lastname,
+			      street,
+			      number,
+			      zipcode,
+			      city);
+	add_entry(addr);
+	return 0;
+}
+
+static int add_entry(address_t *data)
+{
+	entry_ptr_t ent;
+	ent = malloc(sizeof(entry_t));
+	if (ent == NULL) {
+		_dbgerr(MEMORY_ALLOCATION_FAIL);
+		return -1;
+	}
+
+	ent->data = data;
+	ent->next = NULL;
+	head = ent;
+}
 
 static address_t *create_address(char *firstname,
 				 char *lastname,
