@@ -97,7 +97,7 @@ static int add_entry(address_t *data)
 	}
 
 	ent->data = data;
-	ent->next = NULL;
+	ent->next = head;
 	head = ent;
 }
 

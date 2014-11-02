@@ -25,6 +25,7 @@
 #include <string.h>
 #include "menu.h"
 #include "debug.h"
+#include "address.h"
 
 /* define help strings */
 #define MENU_HELP_HELP	"List avialable commands"
@@ -41,12 +42,13 @@
 #define MENU_CMD_QUIT	"quit"
 
 /* define maximum length for inputs */
-#define MAX_LINE 10
+#define MAX_LINE 20
 
 /* */
 #define TYPE_CMD "> "
 
 char *get_input(void);
+char *get_line(void);
 
 int menu_help(void)
 {
@@ -62,6 +64,45 @@ int menu_help(void)
 int menu_add(void)
 {
 	_dbgmsg("executing add");
+
+	char *firstname;
+	char *lastname;
+	char *street;
+	int *number;
+	int *zipcode;
+	char *city;
+
+	printf("\tFirst name:\t");
+	firstname = get_line();
+
+	printf("\tLast Name:\t");
+	lastname = get_line();
+
+	printf("\tStreet:\t\t");
+	street = get_line();
+
+	printf("\tNumber:\t\t");
+	number = malloc(sizeof(int));
+	*number = atoi(get_line());
+
+	printf("\tZipcode:\t");
+	zipcode = malloc(sizeof(int));
+	*zipcode = atoi(get_line());
+
+	printf("\tCity:\t\t");
+	city = get_line();
+
+	#ifdef DEBUG
+		_dbgmsg("First name:\t%s", firstname);
+		_dbgmsg("Last name:\t%s", lastname);
+		_dbgmsg("Street:\t%s", street);
+		_dbgmsg("Number:\t%i", *number);
+		_dbgmsg("Zipcode:\t%i", *zipcode);
+		_dbgmsg("City:\t\t%s", city);
+	#endif
+
+	add_address(firstname, lastname, street, number, zipcode, city);
+
 	return 0;
 }
 
@@ -75,6 +116,17 @@ void menu_quit(void)
 {
 	_dbgmsg("exiting program by user");
 	exit(0);
+}
+
+char *get_line(void)
+{
+	char *input;
+	char raw[MAX_LINE];
+	fgets(raw, MAX_LINE, stdin);
+	strtok(raw, "\n");
+	input = malloc(strlen(raw));
+	strcpy(input, raw);
+	return input;
 }
 
 int menu_check_command(void)
