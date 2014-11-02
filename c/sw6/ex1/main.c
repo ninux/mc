@@ -29,6 +29,7 @@
 
 int main(int argc, char **argv)
 {
+	_dbginfo();
 	_dbgmsg("starting program");
 
 	int command;

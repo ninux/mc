@@ -101,7 +101,7 @@ int menu_check_command(void)
 
 char *get_input(void)
 {
-	char raw[MAX_LINE];	/* why is "char *raw;" not working here? */
+	char raw[MAX_LINE];
 	char *input;
 	printf(TYPE_CMD);
 	if (fgets(raw, MAX_LINE, stdin) == NULL) {
