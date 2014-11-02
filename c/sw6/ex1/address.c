@@ -94,11 +94,14 @@ static int add_entry(address_t *data)
 	if (ent == NULL) {
 		_dbgerr(MEMORY_ALLOCATION_FAIL);
 		return -1;
+	} else {
+		_dbgmsg("allocated memory for a new entry");
+		ent->data = data;
+		ent->next = head;
+		head = ent;
+		_dbgmsg("new head at %i", head);
 	}
-
-	ent->data = data;
-	ent->next = head;
-	head = ent;
+	return 0;
 }
 
 static address_t *create_address(char *firstname,
@@ -115,6 +118,8 @@ static address_t *create_address(char *firstname,
 	if (n_address == NULL) {
 		_dbgerr(MEMORY_ALLOCATION_FAIL);
 		return NULL;
+	} else {
+		_dbgmsg("allocated memory for a new address");
 	}
 
 	/* preparing firstname to address */
@@ -125,6 +130,7 @@ static address_t *create_address(char *firstname,
 		n_address = NULL;
 		return NULL;
 	} else {
+		_dbgmsg("allocated memory for a firstname \"%s\"", firstname);
 		strcpy(n_address->firstname, firstname);
 	}
 
@@ -136,6 +142,7 @@ static address_t *create_address(char *firstname,
 		free(n_address);
 		return NULL;
 	} else {
+		_dbgmsg("allocated memory for a lastname \"%s\"", lastname);
 		strcpy(n_address->lastname, lastname);
 	}
 
@@ -148,6 +155,7 @@ static address_t *create_address(char *firstname,
 		free(n_address);
 		return NULL;
 	} else {
+		_dbgmsg("allocated memory for a street \"%s\"", street);
 		strcpy(n_address->street, street);
 	}
 
@@ -161,6 +169,7 @@ static address_t *create_address(char *firstname,
 		free(n_address);
 		return NULL;
 	} else {
+		_dbgmsg("allocated memory for a number \"%i\"", *number);
 		n_address->number = number;
 	}
 
@@ -175,6 +184,7 @@ static address_t *create_address(char *firstname,
 		free(n_address);
 		return NULL;
 	} else {
+		_dbgmsg("allocated memory for a zipcode \"%i\"", *zipcode);
 		n_address->zipcode = zipcode;
 	}
 
@@ -190,13 +200,15 @@ static address_t *create_address(char *firstname,
 		free(n_address);
 		return NULL;
 	} else {
+		_dbgmsg("allocated memory for a city \"%s\"", city);
 		strcpy(n_address->city, city);
 	}
 
 }
 
-
-
+void show_all(void)
+{
+}
 
 
 

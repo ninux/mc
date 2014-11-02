@@ -109,6 +109,7 @@ int menu_add(void)
 int menu_list(void)
 {
 	_dbgmsg("executing list");
+	show_all();
 	return 0;
 }
 
