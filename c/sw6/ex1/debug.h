@@ -27,6 +27,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MEMORY_ALLOCATION_FAIL		"allocating memory failed"
+#define MEMORY_ALLOCATION_SUCCESS	"allocating memory successed"
+
 #ifdef DEBUG
 #define _dbgmsg(MESSAGE, ...) printf("<DEBUG>: " MESSAGE "\n", ##__VA_ARGS__)
 #else

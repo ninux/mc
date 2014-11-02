@@ -1,5 +1,5 @@
 /*
-* main.c - Main program for address management
+* address.h - Debug utilities
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,27 +21,8 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "debug.h"
-#include "menu.h"
-#include "info.h"
-#include "address.h"
+#ifndef ADDRESS_H
+#define ADDRESS_H
 
-int main(int argc, char **argv)
-{
-	_dbginfo();
-	_dbgmsg("starting program");
 
-	int command;
-	command = 0;
-	printf("\n" ABOUT "\n\n");
-	printf("Wlecome to the ninux address management program!\n");
-	while (command != QUIT) {
-		command = menu_check_command();
-		menu_execute(command);
-	}
-
-	_dbgmsg("exiting program automatically");
-	return 0;
-}
+#endif
