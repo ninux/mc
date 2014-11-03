@@ -29,7 +29,9 @@ typedef enum {
 	ADD,
 	LIST,
 	QUIT,
-	CLEAR
+	CLEAR,
+	DELETE,
+	ABOUT
 } menu_cmd_t;
 
 int menu_check_command(void);

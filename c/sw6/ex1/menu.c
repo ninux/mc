@@ -29,11 +29,13 @@
 #include "address.h"
 
 /* define help strings */
-#define MENU_HELP_HELP	"List avialable commands"
-#define MENU_HELP_ADD	"Add a new address entry"
-#define MENU_HELP_LIST	"List available address entries"
-#define MENU_HELP_QUIT	"Exit the current session"
-#define MENU_HELP_CLEAR	"Clear the screen"
+#define MENU_HELP_HELP		"List avialable commands"
+#define MENU_HELP_ADD		"Add a new address entry"
+#define MENU_HELP_LIST		"List available address entries"
+#define MENU_HELP_QUIT		"Exit the current session"
+#define MENU_HELP_CLEAR		"Clear the screen"
+#define MENU_HELP_DELETE	"Delete all address entries"
+#define MENU_HELP_ABOUT		"Show the project info"
 
 /* define some menu messages */
 #define MENU_INVALID	"error: invalid syntax, see help"
@@ -43,6 +45,8 @@
 #define MENU_CMD_LIST	"list"
 #define MENU_CMD_QUIT	"quit"
 #define MENU_CMD_CLEAR	"clear"
+#define MENU_CMD_DELETE	"delete"
+#define MENU_CMD_ABOUT	"about"
 
 /* define maximum length for inputs */
 #define MAX_LINE 20
@@ -52,16 +56,19 @@
 
 char *get_input(void);
 char *get_line(void);
+void menu_delete(void);
 
 int menu_help(void)
 {
 	_dbgmsg("executing help");
 	printf("Commands:\n");
-	printf("\t" MENU_CMD_HELP "\t" MENU_HELP_HELP "\n");
-	printf("\t" MENU_CMD_ADD "\t"  MENU_HELP_ADD "\n");
-	printf("\t" MENU_CMD_LIST "\t" MENU_HELP_LIST "\n");
-	printf("\t" MENU_CMD_QUIT "\t" MENU_HELP_QUIT "\n");
-	printf("\t" MENU_CMD_CLEAR "\t"MENU_HELP_CLEAR "\n");
+	printf("\t" MENU_CMD_HELP "\t"	MENU_HELP_HELP "\n");
+	printf("\t" MENU_CMD_ADD "\t"	MENU_HELP_ADD "\n");
+	printf("\t" MENU_CMD_LIST "\t"	MENU_HELP_LIST "\n");
+	printf("\t" MENU_CMD_QUIT "\t"	MENU_HELP_QUIT "\n");
+	printf("\t" MENU_CMD_CLEAR "\t"	MENU_HELP_CLEAR "\n");
+	printf("\t" MENU_CMD_DELETE "\t"MENU_HELP_DELETE "\n");
+	printf("\t" MENU_CMD_ABOUT "\t"	MENU_HELP_ABOUT "\n");
 	return 0;
 }
 
@@ -128,13 +135,32 @@ int menu_list(void)
 void menu_quit(void)
 {
 	_dbgmsg("exiting program by user");
-	delete_all();
+	/* delete_all(); */
+	menu_delete();
 	exit(0);
 }
 
 void menu_clear(void)
 {
 	system("clear");
+}
+
+void menu_delete(void)
+{
+	delete_all();
+}
+
+void menu_about(void)
+{
+	char c;
+	FILE *file;
+	file = fopen("about.txt", "r");
+	if (file) {
+		while ((c = getc(file)) != EOF) {
+			putchar(c);
+		}
+		fclose(file);
+	}
 }
 
 char *get_line(void)
@@ -164,6 +190,10 @@ int menu_check_command(void)
 		command = QUIT;
 	} else if (strcmp(input, MENU_CMD_CLEAR) == 0) {
 		command = CLEAR;
+	} else if (strcmp(input, MENU_CMD_DELETE) == 0) {
+		command = DELETE;
+	} else if (strcmp(input, MENU_CMD_ABOUT) == 0) {
+		command = ABOUT;
 	} else {
 		command = -1;
 	}
@@ -207,6 +237,8 @@ int menu_execute(int command)
 	case LIST:	menu_list(); break;
 	case QUIT:	menu_quit(); break;
 	case CLEAR:	menu_clear(); break;
+	case DELETE:	menu_delete(); break;
+	case ABOUT:	menu_about(); break;
 	default:	_dbgerr("wrong syntax");
 			printf(MENU_INVALID "\n"); break;
 	}

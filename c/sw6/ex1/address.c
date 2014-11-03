@@ -212,9 +212,9 @@ static address_t *create_address(char *firstname,
 void show_all(void)
 {
 	int ctr;
-	ctr = 1;
-
 	entry_ptr_t ent;
+
+	ctr = 1;
 	ent = head;
 
 	while (ent != NULL) {
@@ -236,9 +236,27 @@ void show_all(void)
 void delete_all(void)
 {
 	delete_recursive(head);
+	head = NULL;
 }
 
 static void delete_recursive(entry_ptr_t ent)
 {
-
+	if (ent != NULL) {
+		if ((ent->next) != NULL) {
+			delete_recursive(ent->next);
+		}
+		free(ent->data->city);
+		free(ent->data->zipcode);
+		free(ent->data->number);
+		free(ent->data->street);
+		free(ent->data->lastname);
+		free(ent->data->firstname);
+		free(ent->next);
+		free(ent);
+		ent = NULL;
+		_dbgnice("freed an entry");
+	} else {
+		_dbgwarn("list is empty");
+		printf("nothing to delete\n");
+	}
 }
