@@ -24,6 +24,9 @@
 #ifndef MENU_H
 #define MENU_H
 
+#define STYLE_BOLD	"\033[1m"
+#define STYLE_NO_BOLD	"\033[22m"
+
 typedef enum {
 	HELP,
 	ADD,

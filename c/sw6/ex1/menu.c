@@ -62,13 +62,20 @@ int menu_help(void)
 {
 	_dbgmsg("executing help");
 	printf("Commands:\n");
-	printf("\t" MENU_CMD_HELP "\t"	MENU_HELP_HELP "\n");
-	printf("\t" MENU_CMD_ADD "\t"	MENU_HELP_ADD "\n");
-	printf("\t" MENU_CMD_LIST "\t"	MENU_HELP_LIST "\n");
-	printf("\t" MENU_CMD_QUIT "\t"	MENU_HELP_QUIT "\n");
-	printf("\t" MENU_CMD_CLEAR "\t"	MENU_HELP_CLEAR "\n");
-	printf("\t" MENU_CMD_DELETE "\t"MENU_HELP_DELETE "\n");
-	printf("\t" MENU_CMD_ABOUT "\t"	MENU_HELP_ABOUT "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_HELP STYLE_NO_BOLD
+	       "\t" MENU_HELP_HELP "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_ADD STYLE_NO_BOLD
+	       "\t" MENU_HELP_ADD "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_LIST STYLE_NO_BOLD
+	       "\t" MENU_HELP_LIST "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_QUIT STYLE_NO_BOLD
+	       "\t" MENU_HELP_QUIT "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_CLEAR STYLE_NO_BOLD
+	       "\t" MENU_HELP_CLEAR "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_DELETE STYLE_NO_BOLD
+	       "\t" MENU_HELP_DELETE "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_ABOUT STYLE_NO_BOLD
+	       "\t" MENU_HELP_ABOUT "\n");
 	return 0;
 }
 
