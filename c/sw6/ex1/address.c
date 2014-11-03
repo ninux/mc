@@ -209,7 +209,20 @@ static address_t *create_address(char *firstname,
 
 void show_all(void)
 {
-	_dbgmsg("the firstname is \"%s\"", head->data->firstname);
+	int ctr;
+	ctr = 1;
+
+	while (head != NULL) {
+		printf("Entry %i:\n", ctr);
+		printf("\t%s\n", head->data->firstname);
+		printf("\t%s\n", head->data->lastname);
+		printf("\t%s\n", head->data->street);
+		printf("\t%i\n", *(head->data->number));
+		printf("\t%i\n", *(head->data->zipcode));
+		printf("\t%s\n", head->data->city);
+		head = head->next;
+		ctr++;
+	}
 }
 
 
