@@ -1,5 +1,5 @@
 /*
-* address.c - Debug utilities
+* address.c - Address
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -202,12 +202,14 @@ static address_t *create_address(char *firstname,
 	} else {
 		_dbgmsg("allocated memory for a city \"%s\"", city);
 		strcpy(n_address->city, city);
+		return n_address;
 	}
 
 }
 
 void show_all(void)
 {
+	_dbgmsg("the firstname is \"%s\"", head->data->firstname);
 }
 
 
