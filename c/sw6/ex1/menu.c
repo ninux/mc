@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "menu.h"
 #include "debug.h"
 #include "address.h"
@@ -32,6 +33,7 @@
 #define MENU_HELP_ADD	"Add a new address entry"
 #define MENU_HELP_LIST	"List available address entries"
 #define MENU_HELP_QUIT	"Exit the current session"
+#define MENU_HELP_CLEAR	"Clear the screen"
 
 /* define some menu messages */
 #define MENU_INVALID	"error: invalid syntax, see help"
@@ -40,6 +42,7 @@
 #define MENU_CMD_ADD	"add"
 #define MENU_CMD_LIST	"list"
 #define MENU_CMD_QUIT	"quit"
+#define MENU_CMD_CLEAR	"clear"
 
 /* define maximum length for inputs */
 #define MAX_LINE 20
@@ -58,6 +61,7 @@ int menu_help(void)
 	printf("\t" MENU_CMD_ADD "\t"  MENU_HELP_ADD "\n");
 	printf("\t" MENU_CMD_LIST "\t" MENU_HELP_LIST "\n");
 	printf("\t" MENU_CMD_QUIT "\t" MENU_HELP_QUIT "\n");
+	printf("\t" MENU_CMD_CLEAR "\t"MENU_HELP_CLEAR "\n");
 	return 0;
 }
 
@@ -103,6 +107,13 @@ int menu_add(void)
 
 	add_address(firstname, lastname, street, number, zipcode, city);
 
+	free(firstname);
+	free(lastname);
+	free(street);
+	free(number);
+	free(zipcode);
+	free(city);
+
 	return 0;
 }
 
@@ -116,7 +127,13 @@ int menu_list(void)
 void menu_quit(void)
 {
 	_dbgmsg("exiting program by user");
+	delete_all();
 	exit(0);
+}
+
+void menu_clear(void)
+{
+	system("clear");
 }
 
 char *get_line(void)
@@ -144,6 +161,8 @@ int menu_check_command(void)
 		command = LIST;
 	} else if (strcmp(input, MENU_CMD_QUIT) == 0) {
 		command = QUIT;
+	} else if (strcmp(input, MENU_CMD_CLEAR) == 0) {
+		command = CLEAR;
 	} else {
 		command = -1;
 	}
@@ -185,6 +204,7 @@ int menu_execute(int command)
 	case ADD:	menu_add(); break;
 	case LIST:	menu_list(); break;
 	case QUIT:	menu_quit(); break;
+	case CLEAR:	menu_clear(); break;
 	default:	printf(MENU_INVALID "\n"); break;
 	}
 	return 0;

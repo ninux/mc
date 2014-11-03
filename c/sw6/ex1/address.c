@@ -58,6 +58,8 @@ static entry_ptr_t create_entry(address_t *data,
 
 static int add_entry(address_t *data);
 
+static void delete_recursive(entry_ptr_t ent);
+
 static void deleta_all(void);
 
 int add_address(char *firstname,
@@ -170,7 +172,7 @@ static address_t *create_address(char *firstname,
 		return NULL;
 	} else {
 		_dbgmsg("allocated memory for a number \"%i\"", *number);
-		n_address->number = number;
+		*(n_address->number) = *number;
 	}
 
 	/* preparing zipcode to address */
@@ -185,7 +187,7 @@ static address_t *create_address(char *firstname,
 		return NULL;
 	} else {
 		_dbgmsg("allocated memory for a zipcode \"%i\"", *zipcode);
-		n_address->zipcode = zipcode;
+		*(n_address->zipcode) = *zipcode;
 	}
 
 	/* preparing city to address */
@@ -212,33 +214,31 @@ void show_all(void)
 	int ctr;
 	ctr = 1;
 
-	while (head != NULL) {
-		printf("Entry %i:\n", ctr);
-		printf("\t%s\n", head->data->firstname);
-		printf("\t%s\n", head->data->lastname);
-		printf("\t%s\n", head->data->street);
-		printf("\t%i\n", *(head->data->number));
-		printf("\t%i\n", *(head->data->zipcode));
-		printf("\t%s\n", head->data->city);
-		head = head->next;
+	entry_ptr_t ent;
+	ent = head;
+
+	while (ent != NULL) {
+		printf("Entry %2i:", ctr);
+		printf("\t%s %s\n",
+		       ent->data->firstname,
+		       ent->data->lastname);
+		printf("\t\t%s %i\n",
+		       ent->data->street,
+		       *(ent->data->number));
+		printf("\t\t%i %s\n\n",
+		       *(ent->data->zipcode),
+		       ent->data->city);
+		ent = ent->next;
 		ctr++;
 	}
 }
 
+void delete_all(void)
+{
+	delete_recursive(head);
+}
 
+static void delete_recursive(entry_ptr_t ent)
+{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

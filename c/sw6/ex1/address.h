@@ -30,6 +30,9 @@ int add_address(char *firstname,
 		int *number,
 		int *zipcode,
 		char *city);
+
 void show_all(void);
+
+void delete_all(void);
 
 #endif
