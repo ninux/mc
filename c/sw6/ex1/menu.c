@@ -113,6 +113,7 @@ int menu_add(void)
 	free(number);
 	free(zipcode);
 	free(city);
+	_dbgnice("freeing inputs");
 
 	return 0;
 }
@@ -168,6 +169,7 @@ int menu_check_command(void)
 	}
 	_dbgmsg("evaluated command is %i", command);
 	free(input);
+	_dbgnice("freeing input");
 	return command;
 }
 
@@ -205,7 +207,8 @@ int menu_execute(int command)
 	case LIST:	menu_list(); break;
 	case QUIT:	menu_quit(); break;
 	case CLEAR:	menu_clear(); break;
-	default:	printf(MENU_INVALID "\n"); break;
+	default:	_dbgerr("wrong syntax");
+			printf(MENU_INVALID "\n"); break;
 	}
 	return 0;
 }
