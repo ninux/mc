@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 	int command;
 	command = 0;
 	printf("\n" ABOUT "\n\n");
-	printf("Wlecome to the ninux address management program!\n");
+	printf("Welcome to the ninux address management program!\n");
 	while (command != QUIT) {
 		command = menu_check_command();
 		menu_execute(command);
