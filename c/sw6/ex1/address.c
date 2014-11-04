@@ -63,6 +63,8 @@ static void delete_recursive(entry_ptr_t ent);
 
 static void deleta_all(void);
 
+static int parse_address(int n);
+
 int add_address(char *firstname,
 		char *lastname,
 		char *street,
@@ -266,10 +268,124 @@ void read_all(void)
 	char *line;
 	int ctr;
 
-	ctr = 0;
+	ctr = 1;
 
 	while ((line = read_address(ctr)) != NULL) {
+		strtok(line, "\n");
 		printf("Entry %2i: %s\n", ctr, line);
+		parse_address(ctr);
 		ctr++;
 	}
 }
+
+static int parse_address(int n)
+{
+	_dbgmsg("parsing data from file for entry %i", n);
+
+	char *line;
+	char c;
+	int i;
+	int pos;
+	int ctr;
+
+	char *firstname;
+	char *lastname;
+	char *street;
+	char *nr;
+	int *number;
+	char *zp;
+	int *zipcode;
+	char *city;
+
+	i = 0;
+	ctr = 0;
+	pos = 0;
+
+	line = read_address(n);
+	if (line == NULL) {
+		return -1;
+	}
+	_dbgmsg("read data entry as \"%s\"", line);
+
+	/* prepare the memory for the data */
+	firstname = malloc(strlen(line));
+	lastname = malloc(strlen(line));
+	street = malloc(strlen(line));
+	number = malloc(sizeof(int));
+	nr = malloc(strlen(line));
+	zipcode = malloc(sizeof(int));
+	zp = malloc(strlen(line));
+	city = malloc(strlen(line));
+
+	while (((c = line[ctr]) != ';') && (c != '\n') && (i <= 5)) {
+		if (c == ',') {
+			i++;
+			ctr++;
+			pos = 0;
+		} else {
+			if (c == ' ') {
+				ctr++;
+			} else {
+				switch (i) {
+				case 0:	firstname[pos] = c;
+					firstname[pos+1] = '\0';
+					break;
+				case 1: lastname[pos] = c;
+					lastname[pos+1] = '\0';
+					break;
+				case 2: street[pos] = c;
+					street[pos+1] = '\0';
+					break;
+				case 3: nr[pos] = c;
+					nr[pos+1] = '\0';
+					break;
+				case 4: zp[pos] = c;
+					zp[pos+1] = '\0';
+					break;
+				case 5: city[pos] = c;
+					city[pos+1] = '\0';
+					break;
+				default:
+					_dbgerr("something went wrong at parsing "
+					"\"%c\"", c);
+					break;
+				}
+				pos++;
+				ctr++;
+			}
+		}
+	}
+
+	/* fitting memory and data */
+	firstname = realloc(firstname, strlen(firstname));
+	lastname = realloc(lastname, strlen(lastname));
+	street = realloc(street, strlen(street));
+	*number = atoi(nr);
+	free(nr);
+	*zipcode = atoi(zp);
+	free(zp);
+	city = realloc(city, strlen(city));
+
+	_dbgmsg("finished parsing -> adding new address entry");
+	return add_address(firstname, lastname, street, number, zipcode, city);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

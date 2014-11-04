@@ -38,12 +38,12 @@ char *read_address(int n)
 	FILE *file;
 
 	target = n;
-	position = 0;
+	position = 1;
 	file = fopen(ADDRESS_FILE, "r");
 
 	if (file) {
 		while (fgets(line, LINE_LIMIT, file) != NULL) {
-			_dbgmsg("read line \"%s\"", line);
+			_dbgmsg("read line \"%s\"", strtok(line, "\n"));
 			if (position == target) {
 				_dbgmsg("found the entry");
 				address = malloc(strlen(line));
@@ -53,7 +53,6 @@ char *read_address(int n)
 					_dbgmsg("allocated memory for address "
 						"read from file");
 					strcpy(address, line);
-					strtok(address, "\n");
 					fclose(file);
 					return address;
 				}
