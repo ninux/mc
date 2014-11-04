@@ -16,7 +16,7 @@
 * General Public License for more details.
 *
 * You should have received a copy of the GNU General Public License along
-* walong with this program.  If not, see <http://www.gnu.org/licenses/>.
+* with this program.  If not, see <http://www.gnu.org/licenses/>.
 *
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
@@ -290,6 +290,7 @@ static int data_to_address(int n)
 	int i;
 	int pos;
 	int ctr;
+	int ret;
 
 	char *firstname;
 	char *lastname;
@@ -370,5 +371,15 @@ static int data_to_address(int n)
 	city = realloc(city, strlen(city));
 
 	_dbgmsg("finished parsing -> adding new address entry");
-	return add_address(firstname, lastname, street, number, zipcode, city);
+	ret = add_address(firstname, lastname, street, number, zipcode, city);
+
+	free(firstname);
+	free(lastname);
+	free(street);
+	free(number);
+	free(zipcode);
+	free(city);
+	_dbgnice("freed all address data for entry %i", n);
+
+	return ret;
 }
