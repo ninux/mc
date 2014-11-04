@@ -25,6 +25,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <math.h>
 #include "menu.h"
 #include "debug.h"
 #include "address.h"
@@ -48,19 +49,19 @@
 
 #define MENU_FORMAT		STYLE_BOLD \
 				"\tField\t\tFormat\tSize\n" \
-				"\t----------------------------------\n" \
+				"\t----------------------------\n" \
 				STYLE_NO_BOLD \
-				"\tFirst name\tString\t%10i\n" \
-				"\tLast name\tString\t%10i\n" \
-				"\tStreet\t\tString\t%10i\n" \
-				"\tNumber\t\tInteger\t%i\n" \
-				"\tZipcode\t\tInteger\t%i\n" \
-				"\tCity\t\tString\t%10i\n", \
+				"\tFirst name\tString\t%4i\n" \
+				"\tLast name\tString\t%4i\n" \
+				"\tStreet\t\tString\t%4i\n" \
+				"\tNumber\t\tInteger\t%4i\n" \
+				"\tZipcode\t\tInteger\t%4i\n" \
+				"\tCity\t\tString\t%4i\n", \
 				MAX_LINE, \
 				MAX_LINE, \
 				MAX_LINE, \
-				INT_MAX, \
-				INT_MAX, \
+				(int)((log10(abs(INT_MAX))) + 1), \
+				(int)((log10(abs(INT_MAX))) + 1), \
 				MAX_LINE
 
 /* define some menu messages */
