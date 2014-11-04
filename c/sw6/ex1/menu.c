@@ -24,9 +24,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "menu.h"
 #include "debug.h"
 #include "address.h"
+
+/* define maximum length for inputs */
+#define MAX_LINE 20
+
+/* */
+#define TYPE_CMD "> "
 
 /* define help strings */
 #define MENU_HELP_HELP		"List avialable commands"
@@ -37,6 +44,24 @@
 #define MENU_HELP_DELETE	"Delete all address entries"
 #define MENU_HELP_ABOUT		"Show the project info"
 #define MENU_HELP_READ		"Read address from file"
+#define MENU_HELP_FORMAT	"Show the address-field formats"
+
+#define MENU_FORMAT		STYLE_BOLD \
+				"\tField\t\tFormat\tSize\n" \
+				"\t----------------------------------\n" \
+				STYLE_NO_BOLD \
+				"\tFirst name\tString\t%10i\n" \
+				"\tLast name\tString\t%10i\n" \
+				"\tStreet\t\tString\t%10i\n" \
+				"\tNumber\t\tInteger\t%i\n" \
+				"\tZipcode\t\tInteger\t%i\n" \
+				"\tCity\t\tString\t%10i\n", \
+				MAX_LINE, \
+				MAX_LINE, \
+				MAX_LINE, \
+				INT_MAX, \
+				INT_MAX, \
+				MAX_LINE
 
 /* define some menu messages */
 #define MENU_INVALID	"error: invalid syntax, see help"
@@ -49,12 +74,8 @@
 #define MENU_CMD_DELETE	"delete"
 #define MENU_CMD_ABOUT	"about"
 #define MENU_CMD_READ	"read"
+#define MENU_CMD_FORMAT	"format"
 
-/* define maximum length for inputs */
-#define MAX_LINE 20
-
-/* */
-#define TYPE_CMD "> "
 
 char *get_input(void);
 char *get_line(void);
@@ -80,6 +101,8 @@ int menu_help(void)
 	       "\t" MENU_HELP_ABOUT "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_READ STYLE_NO_BOLD
 	       "\t" MENU_HELP_READ "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_FORMAT STYLE_NO_BOLD
+	       "\t" MENU_HELP_FORMAT "\n");
 	return 0;
 }
 
@@ -180,6 +203,11 @@ void menu_read(void)
 	read_all();
 }
 
+void menu_format(void)
+{
+	printf(MENU_FORMAT);
+}
+
 char *get_line(void)
 {
 	char *input;
@@ -213,6 +241,8 @@ int menu_check_command(void)
 		command = ABOUT;
 	} else if (strcmp(input, MENU_CMD_READ) == 0) {
 		command = READ;
+	} else if (strcmp(input, MENU_CMD_FORMAT) == 0) {
+		command = FORMAT;
 	} else {
 		command = -1;
 	}
@@ -259,6 +289,7 @@ int menu_execute(int command)
 	case DELETE:	menu_delete(); break;
 	case ABOUT:	menu_about(); break;
 	case READ:	menu_read(); break;
+	case FORMAT:	menu_format(); break;
 	default:	_dbgerr("wrong syntax");
 			printf(MENU_INVALID "\n"); break;
 	}
