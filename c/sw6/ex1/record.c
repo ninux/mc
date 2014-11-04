@@ -63,5 +63,6 @@ char *read_address(int n)
 		}
 	        fclose(file);
 		_dbgerr("there's no entry %i", target);
+		return NULL;
 	}
 }

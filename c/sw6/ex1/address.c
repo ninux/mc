@@ -63,7 +63,7 @@ static void delete_recursive(entry_ptr_t ent);
 
 static void deleta_all(void);
 
-static int parse_address(int n);
+static int data_to_address(int n);
 
 int add_address(char *firstname,
 		char *lastname,
@@ -138,6 +138,8 @@ static address_t *create_address(char *firstname,
 		_dbgmsg("allocated memory for a firstname \"%s\"", firstname);
 		strcpy(n_address->firstname, firstname);
 	}
+
+	/* THE PROGRAM CRASHES HERE AFTER "delete" AND THEN "add" */
 
 	/* preparing lastname to address */
 	n_address->lastname = malloc(strlen(lastname));
@@ -255,8 +257,6 @@ static void delete_recursive(entry_ptr_t ent)
 		free(ent->data->lastname);
 		free(ent->data->firstname);
 		free(ent->next);
-		free(ent);
-		ent = NULL;
 		_dbgnice("freed an entry");
 	} else {
 		_dbgwarn("list is empty");
@@ -273,12 +273,15 @@ void read_all(void)
 	while ((line = read_address(ctr)) != NULL) {
 		strtok(line, "\n");
 		printf("Entry %2i: %s\n", ctr, line);
-		parse_address(ctr);
+		data_to_address(ctr);
 		ctr++;
 	}
+	free(line);
 }
 
-static int parse_address(int n)
+
+
+static int data_to_address(int n)
 {
 	_dbgmsg("parsing data from file for entry %i", n);
 
@@ -369,23 +372,3 @@ static int parse_address(int n)
 	_dbgmsg("finished parsing -> adding new address entry");
 	return add_address(firstname, lastname, street, number, zipcode, city);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
