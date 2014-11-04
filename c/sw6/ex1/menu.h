@@ -34,7 +34,8 @@ typedef enum {
 	QUIT,
 	CLEAR,
 	DELETE,
-	ABOUT
+	ABOUT,
+	READ
 } menu_cmd_t;
 
 int menu_check_command(void);

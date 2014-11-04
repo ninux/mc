@@ -36,6 +36,7 @@
 #define MENU_HELP_CLEAR		"Clear the screen"
 #define MENU_HELP_DELETE	"Delete all address entries"
 #define MENU_HELP_ABOUT		"Show the project info"
+#define MENU_HELP_READ		"Read address from file"
 
 /* define some menu messages */
 #define MENU_INVALID	"error: invalid syntax, see help"
@@ -47,6 +48,7 @@
 #define MENU_CMD_CLEAR	"clear"
 #define MENU_CMD_DELETE	"delete"
 #define MENU_CMD_ABOUT	"about"
+#define MENU_CMD_READ	"read"
 
 /* define maximum length for inputs */
 #define MAX_LINE 20
@@ -76,6 +78,8 @@ int menu_help(void)
 	       "\t" MENU_HELP_DELETE "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_ABOUT STYLE_NO_BOLD
 	       "\t" MENU_HELP_ABOUT "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_READ STYLE_NO_BOLD
+	       "\t" MENU_HELP_READ "\n");
 	return 0;
 }
 
@@ -170,6 +174,12 @@ void menu_about(void)
 	}
 }
 
+void menu_read(void)
+{
+	_dbgmsg("reading address from file");
+	read_all();
+}
+
 char *get_line(void)
 {
 	char *input;
@@ -201,6 +211,8 @@ int menu_check_command(void)
 		command = DELETE;
 	} else if (strcmp(input, MENU_CMD_ABOUT) == 0) {
 		command = ABOUT;
+	} else if (strcmp(input, MENU_CMD_READ) == 0) {
+		command = READ;
 	} else {
 		command = -1;
 	}
@@ -246,6 +258,7 @@ int menu_execute(int command)
 	case CLEAR:	menu_clear(); break;
 	case DELETE:	menu_delete(); break;
 	case ABOUT:	menu_about(); break;
+	case READ:	menu_read(); break;
 	default:	_dbgerr("wrong syntax");
 			printf(MENU_INVALID "\n"); break;
 	}

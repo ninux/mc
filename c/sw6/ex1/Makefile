@@ -1,7 +1,7 @@
 # CFLAGS = -pedantic-errors -Wall -Wextra -I. -lm -std=c89
 CFLAGS = -I. -lm -std=gnu11 -Wno-variadic-macros
 
-SOURCES = main.c menu.c address.c
+SOURCES = main.c menu.c address.c record.c
 
 main:
 	gcc $(CFLAGS) -o main.o $(SOURCES)

@@ -1,5 +1,5 @@
 /*
-* address.h - Debug utilities
+* record.c - Recording and reading data from file
 *
 * Copyright (C) 2014 Ervin Mazlagic <nino.ninux@gmail.com>
 *
@@ -21,18 +21,12 @@
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-#ifndef ADDRESS_H
-#define ADDRESS_H
+#ifndef RECORD_H
+#define RECORD_H
 
-int add_address(char *firstname,
-		char *lastname,
-		char *street,
-		int *number,
-		int *zipcode,
-		char *city);
+#include <address.h>
 
-void show_all(void);
-void read_all(void);
-void delete_all(void);
+char *read_address(int n);
+int write_address(void);
 
 #endif

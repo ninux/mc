@@ -26,6 +26,7 @@
 #include <string.h>
 #include "address.h"
 #include "debug.h"
+#include "record.h"
 
 typedef struct {
 	char *firstname;
@@ -257,6 +258,18 @@ static void delete_recursive(entry_ptr_t ent)
 		_dbgnice("freed an entry");
 	} else {
 		_dbgwarn("list is empty");
-		printf("nothing to delete\n");
+	}
+}
+
+void read_all(void)
+{
+	char *line;
+	int ctr;
+
+	ctr = 0;
+
+	while ((line = read_address(ctr)) != NULL) {
+		printf("Entry %2i: %s\n", ctr, line);
+		ctr++;
 	}
 }

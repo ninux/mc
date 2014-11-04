@@ -20,4 +20,5 @@ Project data
 	Name		mc
 	Location	https://github.com/ninux/mc
 	Owner		Nino Ninux (Ervin Mazlagic)
+	Contact		nino.ninux@gmail.com
 	License		GNU General Public License version 3	
