@@ -48,15 +48,15 @@
 #define MENU_HELP_FORMAT	"Show the address-field formats"
 
 #define MENU_FORMAT		STYLE_BOLD \
-				"\tField\t\tFormat\tSize\n" \
+				"\t[n] Field\tFormat\tSize\n" \
 				"\t----------------------------\n" \
 				STYLE_NO_BOLD \
-				"\tFirst name\tString\t%4i\n" \
-				"\tLast name\tString\t%4i\n" \
-				"\tStreet\t\tString\t%4i\n" \
-				"\tNumber\t\tInteger\t%4i\n" \
-				"\tZipcode\t\tInteger\t%4i\n" \
-				"\tCity\t\tString\t%4i\n", \
+				"\t[1] First name\tString\t%4i\n" \
+				"\t[2] Last name\tString\t%4i\n" \
+				"\t[3] Street\tString\t%4i\n" \
+				"\t[4] Number\tInteger\t%4i\n" \
+				"\t[5] Zipcode\tInteger\t%4i\n" \
+				"\t[6] City\tString\t%4i\n", \
 				MAX_LINE, \
 				MAX_LINE, \
 				MAX_LINE, \
@@ -86,24 +86,24 @@ int menu_help(void)
 {
 	_dbgmsg("executing help");
 	printf("Commands:\n");
-	printf("\t" STYLE_BOLD MENU_CMD_HELP STYLE_NO_BOLD
-	       "\t" MENU_HELP_HELP "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_ABOUT STYLE_NO_BOLD
+	       "\t" MENU_HELP_ABOUT "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_ADD STYLE_NO_BOLD
 	       "\t" MENU_HELP_ADD "\n");
-	printf("\t" STYLE_BOLD MENU_CMD_LIST STYLE_NO_BOLD
-	       "\t" MENU_HELP_LIST "\n");
-	printf("\t" STYLE_BOLD MENU_CMD_QUIT STYLE_NO_BOLD
-	       "\t" MENU_HELP_QUIT "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_CLEAR STYLE_NO_BOLD
 	       "\t" MENU_HELP_CLEAR "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_DELETE STYLE_NO_BOLD
 	       "\t" MENU_HELP_DELETE "\n");
-	printf("\t" STYLE_BOLD MENU_CMD_ABOUT STYLE_NO_BOLD
-	       "\t" MENU_HELP_ABOUT "\n");
-	printf("\t" STYLE_BOLD MENU_CMD_READ STYLE_NO_BOLD
-	       "\t" MENU_HELP_READ "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_FORMAT STYLE_NO_BOLD
 	       "\t" MENU_HELP_FORMAT "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_HELP STYLE_NO_BOLD
+	       "\t" MENU_HELP_HELP "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_LIST STYLE_NO_BOLD
+	       "\t" MENU_HELP_LIST "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_READ STYLE_NO_BOLD
+	       "\t" MENU_HELP_READ "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_QUIT STYLE_NO_BOLD
+	       "\t" MENU_HELP_QUIT "\n");
 	return 0;
 }
 
