@@ -18,7 +18,7 @@
  */
 #include "platform.h" /* include peripheral declarations */
 
-#define AUFGABE 1       // Wähle Aufgabe = 1..4
+#define AUFGABE 2       // Wähle Aufgabe = 1..4
 
 /* Aufgabe 5.1
 ***********************************************************/
