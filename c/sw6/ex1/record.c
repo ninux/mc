@@ -75,7 +75,9 @@ int write_address(char *line)
 	if (file == NULL) {
 		_dbgerr("opening file " ADDRESS_FILE " failed");
 	} else {
-		fprintf(file, line);
+		if ((fprintf(file, line)) >= 0) {
+			_dbgmsg("written to file \"" ADDRESS_FILE "\" successfully");
+		}
 	}
 
 
