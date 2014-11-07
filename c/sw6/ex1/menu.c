@@ -44,9 +44,9 @@
 #define MENU_HELP_CLEAR		"Clear the screen"
 #define MENU_HELP_DELETE	"Delete all address entries"
 #define MENU_HELP_ABOUT		"Show the project info"
-#define MENU_HELP_READ		"Read address from file"
+#define MENU_HELP_READ		"Read address-list from file"
 #define MENU_HELP_FORMAT	"Show the address-field formats"
-#define MENU_HELP_WRITE		"Write address to file"
+#define MENU_HELP_WRITE		"Append current address-list to file"
 
 #define MENU_FORMAT		STYLE_BOLD \
 				"\t[n] Field\tFormat\tSize\n" \

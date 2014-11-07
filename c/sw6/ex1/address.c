@@ -297,9 +297,9 @@ static int data_to_address(int n)
 
 	char *line;
 	char c;
-	int i;
-	int pos;
-	int ctr;
+	int i;		/* data segment			*/
+	int pos;	/* position in data segment	*/
+	int ctr;	/* position in inputline	*/
 	int ret;
 
 	char *firstname;
@@ -330,6 +330,14 @@ static int data_to_address(int n)
 	zipcode = malloc(sizeof(int));
 	zp = malloc(strlen(line));
 	city = malloc(strlen(line));
+
+	/* initialize the data */
+	firstname[0] = '\0';
+	lastname[0] = '\0';
+	street[0] = '\0';
+	nr[0] = '\0';
+	zp[0] = '\0';
+	city[0] = '\0';
 
 	while (((c = line[ctr]) != ';') && (c != '\n') && (i <= 5)) {
 		if (c == ',') {
