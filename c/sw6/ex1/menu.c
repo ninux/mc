@@ -31,7 +31,7 @@
 #include "address.h"
 
 /* define maximum length for inputs */
-#define MAX_LINE 20
+#define MAX_LINE 40
 
 /* */
 #define TYPE_CMD "> "
@@ -85,6 +85,8 @@ extern char *dataout;
 char *get_input(void);
 char *get_line(void);
 void menu_delete(void);
+
+static void dump_input(FILE *f);
 
 int menu_help(void)
 {
@@ -230,12 +232,20 @@ void menu_write(void)
 char *get_line(void)
 {
 	char *input;
-	char raw[MAX_LINE];
+	char raw[MAX_LINE+1];
 	fgets(raw, MAX_LINE, stdin);
 	strtok(raw, "\n");
+	raw[MAX_LINE] = '\0';
 	input = malloc(strlen(raw));
 	strcpy(input, raw);
+	dump_input(stdin);
 	return input;
+}
+
+static void dump_input(FILE *f)
+{
+	int ch;
+	while ( (ch = fgetc(f)) != EOF && ch != '\n');
 }
 
 int menu_check_command(void)
