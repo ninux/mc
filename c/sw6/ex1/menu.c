@@ -255,6 +255,8 @@ int menu_check_command(void)
 		command = FORMAT;
 	} else if (strcmp(input, MENU_CMD_WRITE) == 0) {
 		command = WRITE;
+	} else if (strcmp(input, "\n") == 0) {
+		command = ENTER;
 	} else {
 		command = -1;
 	}
@@ -293,16 +295,17 @@ char *get_input(void)
 int menu_execute(int command)
 {
 	switch (command) {
-	case HELP:	menu_help();	break;
-	case ADD:	menu_add();	break;
-	case LIST:	menu_list();	break;
-	case QUIT:	menu_quit();	break;
-	case CLEAR:	menu_clear();	break;
-	case DELETE:	menu_delete();	break;
-	case ABOUT:	menu_about();	break;
-	case READ:	menu_read();	break;
-	case FORMAT:	menu_format();	break;
-	case WRITE:	menu_write();	break;
+	case HELP:	menu_help();		break;
+	case ADD:	menu_add();		break;
+	case LIST:	menu_list();		break;
+	case QUIT:	menu_quit();		break;
+	case CLEAR:	menu_clear();		break;
+	case DELETE:	menu_delete();		break;
+	case ABOUT:	menu_about();		break;
+	case READ:	menu_read();		break;
+	case FORMAT:	menu_format();		break;
+	case WRITE:	menu_write();		break;
+	case ENTER:	break;
 	default:	_dbgerr("wrong syntax");
 			printf(MENU_INVALID "\n");
 			break;

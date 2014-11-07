@@ -37,7 +37,8 @@ typedef enum {
 	ABOUT,
 	READ,
 	FORMAT,
-	WRITE
+	WRITE,
+	ENTER = 100
 } menu_cmd_t;
 
 int menu_check_command(void);
