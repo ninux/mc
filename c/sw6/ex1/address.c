@@ -339,8 +339,14 @@ static int data_to_address(int n)
 	zp[0] = '\0';
 	city[0] = '\0';
 
-	while (((c = line[ctr]) != ';') && (c != '\n') && (i <= 5)) {
-		if (c == ',') {
+	while (((c = line[ctr]) != ';')	&& (i <= 5)) {
+		if (c == '#') {
+			_dbgwarn("found comment -> skipping rest of line");
+			return 0;
+		} else if (c == '\n') {
+			_dbgwarn("found newline -> skipping rest of line");
+			return 0;
+		} else if (c == ',') {
 			i++;
 			ctr++;
 			pos = 0;
