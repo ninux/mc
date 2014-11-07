@@ -36,7 +36,8 @@ typedef enum {
 	DELETE,
 	ABOUT,
 	READ,
-	FORMAT
+	FORMAT,
+	WRITE
 } menu_cmd_t;
 
 int menu_check_command(void);

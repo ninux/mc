@@ -33,6 +33,7 @@ int add_address(char *firstname,
 
 void show_all(void);
 void read_all(void);
+void write_all(void);
 void delete_all(void);
 
 #endif

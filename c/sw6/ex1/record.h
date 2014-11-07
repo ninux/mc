@@ -27,6 +27,6 @@
 #include <address.h>
 
 char *read_address(int n);
-int write_address(void);
+int write_address(char *line);
 
 #endif

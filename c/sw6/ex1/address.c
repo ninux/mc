@@ -24,9 +24,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "address.h"
 #include "debug.h"
 #include "record.h"
+
+#define DATA_SEPARATOR	", "
+#define DATA_END	";\n"
 
 typedef struct {
 	char *firstname;
@@ -64,6 +68,12 @@ static void delete_recursive(entry_ptr_t ent);
 static void deleta_all(void);
 
 static int data_to_address(int n);
+
+static int address_to_data(entry_ptr_t ent);
+
+static int get_entry_length(entry_ptr_t ent);
+
+static int get_digits(int a);
 
 int add_address(char *firstname,
 		char *lastname,
@@ -382,4 +392,78 @@ static int data_to_address(int n)
 	_dbgnice("freed all address data for entry %i", n);
 
 	return ret;
+}
+
+void write_all(void)
+{
+	entry_ptr_t ent;
+	ent = head;
+
+	while (ent != NULL) {
+		address_to_data(ent);
+		ent = ent->next;
+	}
+}
+
+static int address_to_data(entry_ptr_t ent)
+{
+	int length;
+	int offset;
+
+	int son = get_digits(*(ent->data->number))+1;
+	int soz = get_digits(*(ent->data->zipcode))+1;
+
+	char nr[son];
+	char zip[soz];
+
+	offset = 5*(strlen(DATA_SEPARATOR)) + strlen(DATA_END);
+	length = get_entry_length(ent) + offset;
+
+	char line[length];
+	_dbgmsg("reserved %i characters for the line", length);
+
+	strcpy(line, ent->data->firstname);
+	strcat(line, DATA_SEPARATOR);
+	strcat(line, ent->data->lastname);
+	strcat(line, DATA_SEPARATOR);
+	strcat(line, ent->data->street);
+	strcat(line, DATA_SEPARATOR);
+	sprintf(nr, "%i", *(ent->data->number));
+	strcat(line, nr);
+	strcat(line, DATA_SEPARATOR);
+	sprintf(zip, "%i", *(ent->data->zipcode));
+	strcat(line, zip);
+	strcat(line, DATA_SEPARATOR);
+	strcat(line, ent->data->city);
+	strcat(line, DATA_END);
+
+	_dbgmsg("created line \"%s\"", line);
+	write_address(line);
+
+	return 0;
+}
+
+static int get_entry_length(entry_ptr_t ent)
+{
+	int length;
+
+	length = 0;
+
+	length += strlen(ent->data->firstname);
+	length += strlen(ent->data->lastname);
+	length += strlen(ent->data->street);
+	length += get_digits(*(ent->data->number));
+	length += get_digits(*(ent->data->zipcode));
+	length += strlen(ent->data->city);
+
+	_dbgmsg("calculated %i characters for the entry", length);
+	return length;
+}
+
+static int get_digits(int a)
+{
+	int nod;
+	nod = (int)((log10(abs(a))) + 1);
+	_dbgmsg("calculated %i digits for %i", nod, a);
+	return nod;
 }

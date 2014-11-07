@@ -66,3 +66,18 @@ char *read_address(int n)
 		return NULL;
 	}
 }
+
+int write_address(char *line)
+{
+	FILE *file;
+
+	file = fopen(ADDRESS_FILE, "a");
+	if (file == NULL) {
+		_dbgerr("opening file " ADDRESS_FILE " failed");
+	} else {
+		fprintf(file, line);
+	}
+
+
+	fclose(file);
+}

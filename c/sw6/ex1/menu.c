@@ -46,6 +46,7 @@
 #define MENU_HELP_ABOUT		"Show the project info"
 #define MENU_HELP_READ		"Read address from file"
 #define MENU_HELP_FORMAT	"Show the address-field formats"
+#define MENU_HELP_WRITE		"Write address to file"
 
 #define MENU_FORMAT		STYLE_BOLD \
 				"\t[n] Field\tFormat\tSize\n" \
@@ -76,6 +77,7 @@
 #define MENU_CMD_ABOUT	"about"
 #define MENU_CMD_READ	"read"
 #define MENU_CMD_FORMAT	"format"
+#define MENU_CMD_WRITE	"write"
 
 
 char *get_input(void);
@@ -102,6 +104,8 @@ int menu_help(void)
 	       "\t" MENU_HELP_LIST "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_READ STYLE_NO_BOLD
 	       "\t" MENU_HELP_READ "\n");
+	printf("\t" STYLE_BOLD MENU_CMD_WRITE STYLE_NO_BOLD
+	       "\t" MENU_HELP_WRITE "\n");
 	printf("\t" STYLE_BOLD MENU_CMD_QUIT STYLE_NO_BOLD
 	       "\t" MENU_HELP_QUIT "\n");
 	return 0;
@@ -209,6 +213,11 @@ void menu_format(void)
 	printf(MENU_FORMAT);
 }
 
+void menu_write(void)
+{
+	write_all();
+}
+
 char *get_line(void)
 {
 	char *input;
@@ -244,6 +253,8 @@ int menu_check_command(void)
 		command = READ;
 	} else if (strcmp(input, MENU_CMD_FORMAT) == 0) {
 		command = FORMAT;
+	} else if (strcmp(input, MENU_CMD_WRITE) == 0) {
+		command = WRITE;
 	} else {
 		command = -1;
 	}
@@ -282,17 +293,19 @@ char *get_input(void)
 int menu_execute(int command)
 {
 	switch (command) {
-	case HELP:	menu_help(); break;
-	case ADD:	menu_add(); break;
-	case LIST:	menu_list(); break;
-	case QUIT:	menu_quit(); break;
-	case CLEAR:	menu_clear(); break;
-	case DELETE:	menu_delete(); break;
-	case ABOUT:	menu_about(); break;
-	case READ:	menu_read(); break;
-	case FORMAT:	menu_format(); break;
+	case HELP:	menu_help();	break;
+	case ADD:	menu_add();	break;
+	case LIST:	menu_list();	break;
+	case QUIT:	menu_quit();	break;
+	case CLEAR:	menu_clear();	break;
+	case DELETE:	menu_delete();	break;
+	case ABOUT:	menu_about();	break;
+	case READ:	menu_read();	break;
+	case FORMAT:	menu_format();	break;
+	case WRITE:	menu_write();	break;
 	default:	_dbgerr("wrong syntax");
-			printf(MENU_INVALID "\n"); break;
+			printf(MENU_INVALID "\n");
+			break;
 	}
 	return 0;
 }
