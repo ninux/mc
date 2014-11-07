@@ -41,6 +41,9 @@ typedef enum {
 	ENTER = 100
 } menu_cmd_t;
 
+char *datain;
+char *dataout;
+
 int menu_check_command(void);
 int menu_execute(int command);
 

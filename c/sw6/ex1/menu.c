@@ -79,6 +79,8 @@
 #define MENU_CMD_FORMAT	"format"
 #define MENU_CMD_WRITE	"write"
 
+extern char *datain;
+extern char *dataout;
 
 char *get_input(void);
 char *get_line(void);
@@ -204,8 +206,11 @@ void menu_about(void)
 
 void menu_read(void)
 {
-	_dbgmsg("reading address from file");
+	printf("\tInput file: ");
+	datain = get_line();
+	_dbgmsg("reading entries from \"%s\"", datain);
 	read_all();
+	free(datain);
 }
 
 void menu_format(void)
@@ -215,7 +220,11 @@ void menu_format(void)
 
 void menu_write(void)
 {
+	printf("\tOutput file: ");
+	dataout = get_line();
+	_dbgmsg("write entries to \"%s\"", dataout);
 	write_all();
+	free(dataout);
 }
 
 char *get_line(void)

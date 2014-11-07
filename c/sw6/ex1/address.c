@@ -282,10 +282,11 @@ void read_all(void)
 
 	while ((line = read_address(ctr)) != NULL) {
 		strtok(line, "\n");
-		printf("Entry %2i: %s\n", ctr, line);
+		_dbgmsg("Entry %2i: %s\n", ctr, line);
 		data_to_address(ctr);
 		ctr++;
 	}
+
 	free(line);
 }
 

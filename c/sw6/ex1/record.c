@@ -29,6 +29,9 @@
 #define ADDRESS_FILE	"database.txt"
 #define LINE_LIMIT	80
 
+extern char *datain;
+extern char *dataout;
+
 char *read_address(int n)
 {
 	int target;
@@ -39,7 +42,7 @@ char *read_address(int n)
 
 	target = n;
 	position = 1;
-	file = fopen(ADDRESS_FILE, "r");
+	file = fopen(datain, "r");
 
 	if (file) {
 		while (fgets(line, LINE_LIMIT, file) != NULL) {
@@ -71,12 +74,12 @@ int write_address(char *line)
 {
 	FILE *file;
 
-	file = fopen(ADDRESS_FILE, "a");
+	file = fopen(dataout, "a");
 	if (file == NULL) {
-		_dbgerr("opening file " ADDRESS_FILE " failed");
+		_dbgerr("opening file \"%s\" failed", dataout);
 	} else {
 		if ((fprintf(file, line)) >= 0) {
-			_dbgmsg("written to file \"" ADDRESS_FILE "\" successfully");
+			_dbgmsg("written to file \"%s\" successfully", dataout);
 		}
 	}
 
