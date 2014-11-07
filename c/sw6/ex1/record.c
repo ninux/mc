@@ -24,6 +24,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "debug.h"
 
 #define ADDRESS_FILE	"database.txt"
@@ -31,6 +32,11 @@
 
 extern char *datain;
 extern char *dataout;
+
+int file_existence(const char *filename)
+{
+	return (access(filename, F_OK) != -1);
+}
 
 char *read_address(int n)
 {
@@ -67,6 +73,15 @@ char *read_address(int n)
 	        fclose(file);
 		_dbgerr("there's no entry %i", target);
 		return NULL;
+	} else {
+		if (file_existence(datain)) {
+			_dbgerr("something went wrong opening \"%s\"", datain);
+			printf("something went wrong opening \"%s\"\n", datain);
+		} else {
+			_dbgwarn("no such file \"%s\"", datain);
+			printf("no such file \"%s\"\n", datain);
+		}
+		return NULL;
 	}
 }
 
@@ -75,14 +90,19 @@ int write_address(char *line)
 	FILE *file;
 
 	file = fopen(dataout, "a");
-	if (file == NULL) {
-		_dbgerr("opening file \"%s\" failed", dataout);
+
+	if (file) {
+		fprintf(file, line);
 	} else {
-		if ((fprintf(file, line)) >= 0) {
-			_dbgmsg("written to file \"%s\" successfully", dataout);
+		if (file_existence(datain)) {
+			_dbgerr("something went wrong opening \"%s\"", dataout);
+			printf("something went wrong opening \"%s\"\n",
+			       dataout);
+		} else {
+			_dbgwarn("no such file \"%s\"", dataout);
+			printf("no such file \"%s\"\n", dataout);
 		}
 	}
-
 
 	fclose(file);
 }
