@@ -1,0 +1,7 @@
+Richard, Stallman, Gnustreet, 7731, 211, Freeville;
+Linus, Torvalds, Finstreet, 99, 1234, Helsinki;
+Nino, Ninux, Ansistreet, 21, 1989, Zurich;
+Chuch, Norris, Lolway, 1, 993456, Zurich;
+Richard, Stallman, Gnustreet, 7731, 211, Freeville;
+Linus, Torvalds, Finstreet, 99, 1234, Helsinki;
+Nino, Ninux, Ansistreet, 21, 1989, Zurich;

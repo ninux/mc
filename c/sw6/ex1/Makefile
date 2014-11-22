@@ -8,11 +8,11 @@ nam:
 	gcc $(CFLAGS) -o $(OBJECT_PATH)nam.o $(SOURCES)
 
 debug:
-	gcc $(CFLAGS) -o $(OBJECT_PATH)debug.o $(SOURCES) -DDEBUG
+	gcc $(CFLAGS) -g -o $(OBJECT_PATH)debug.o $(SOURCES) -DDEBUG
 
 all:
 	gcc $(CFLAGS) -o $(OBJECT_PATH)nam.o $(SOURCES)
-	gcc $(CFLAGS) -o $(OBJECT_PATH)debug.o $(SOURCES) -DDEBUG
+	gcc $(CFLAGS) -g -o $(OBJECT_PATH)debug.o $(SOURCES) -DDEBUG
 
 .PHONY: clean
 
