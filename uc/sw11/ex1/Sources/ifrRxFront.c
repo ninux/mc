@@ -191,7 +191,7 @@ void ifrRxFrontInit(void)
 {
   TPM1C0SC = 0x4c;    // Interrupt enable, input capture on both edges
   
-//  TPM1C0SC_MS0x = 0;    // channel 0 => input capture mode
-//  TPM1C0SC_ELS0x = 2;   // input capture on both edges
-//  TPM1C0SC_CH0IE = 1;   // interrupt enable
+  //TPM1C0SC_MS0x = 0;    // channel 0 => input capture mode
+  //TPM1C0SC_ELS0x = 2;   // input capture on both edges
+  //TPM1C0SC_CH0IE = 1;   // interrupt enable
 }

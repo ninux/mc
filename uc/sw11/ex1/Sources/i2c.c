@@ -345,8 +345,24 @@ tError i2cWriteCmdData(uint8 adr, uint8 cmd, uint8 *data, uint8 length)
   tError result;
 
   // @ToDo implement function code
+  result = i2cStart(adr, TRUE);			// init communication for write
+  if (result != EC_SUCCESS) {
+	  return result;
+  }
   
-  return result;
+  result = i2cSendByte(cmd);			// send the command byte
+  if (result != EC_SUCCESS) {
+  	  return result;
+  }
+  
+  result = i2cSendData(data, length);	// send the data byte
+    if (result != EC_SUCCESS) {
+  	  return result;
+  }
+    
+  i2cStop();
+  
+  return EC_SUCCESS;
 }
 
 

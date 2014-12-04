@@ -80,8 +80,8 @@ void main(void)
       if (i==0)
       {
         e = quadGetSpeed(&speed);
-        //e = quadGetTicks(&ticks);
-        //e = quadGetErrors(&errors);
+        e = quadGetTicks(&ticks);
+        e = quadGetErrors(&errors);
         i = 25;
       }
     }

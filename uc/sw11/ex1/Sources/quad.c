@@ -139,8 +139,8 @@ tError quadGetSpeed(pQuadSpeed speed)
  */
 tError quadGetTicks(pQuadTicks ticks)
 {
-  // @ToDo implement function code
-  return EC_NOT_IMPLEMENTED;
+	// @ToDo implement function code
+	return i2cReadCmdData(I2C_QUAD_ADR, QUAD_TICKS, (char*)ticks, sizeof(tQuadTicks));
 }
 
 
@@ -154,8 +154,19 @@ tError quadGetTicks(pQuadTicks ticks)
  */
 tError quadResetTicks(void)
 {
-  // @ToDo implement function code
-  return EC_NOT_IMPLEMENTED; 
+	// @ToDo implement function code
+	
+	// create variable for the status control register
+	tQuadStatusControlReg sc;
+	
+	// read the status control register
+	i2cReadCmdData(I2C_QUAD_ADR, QUAD_STATUS_CONTROL, &sc.Byte, sizeof(sc.Byte));
+	
+	// reset the ticks
+	sc.Bits.encResetTicks = TRUE;
+	
+	// write the modified status control register
+	return i2cWriteCmdData(I2C_QUAD_ADR, QUAD_STATUS_CONTROL, (char*)sc.Byte, sizeof(sc.Byte));
 }
 
 
